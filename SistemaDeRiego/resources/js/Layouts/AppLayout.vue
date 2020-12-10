@@ -17,6 +17,28 @@
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </jet-nav-link>
+                            <!-- Crud de usuario -->
+                            <jet-nav-link href="/usuarios" :active="route().current('usuarios')">
+                                Usuarios
+                            </jet-nav-link>
+                            <!-- Crud de campos del usuario -->
+                            <jet-nav-link href="/campos" :active="route().current('campos')">
+                                Mis campos
+                            </jet-nav-link>
+
+                            <!-- Crud de casetas de riego del usuario -->
+                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                Casetas de riego
+                            </jet-nav-link>
+                            <!-- Crud de planificacion del usuario -->
+                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                Planificacion de riegos
+                            </jet-nav-link>
+
+                            <!-- Crud de riegos del usuario -->
+                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                Mis Riegos
+                            </jet-nav-link>
                         </div>
                     </div>
 
