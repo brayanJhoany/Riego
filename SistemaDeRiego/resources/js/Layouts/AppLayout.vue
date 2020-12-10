@@ -18,7 +18,7 @@
                                 Dashboard
                             </jet-nav-link>
                             <!-- Crud de usuario -->
-                            <jet-nav-link href="/usuarios" :active="route().current('usuarios')">
+                            <jet-nav-link v-show="$page.user.rol_id ==1" href="/usuarios" :active="route().current('usuarios')">
                                 Usuarios
                             </jet-nav-link>
                             <!-- Crud de campos del usuario -->

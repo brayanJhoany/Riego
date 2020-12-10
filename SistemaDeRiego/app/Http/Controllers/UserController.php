@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('rol.admin');
+        
+    }
+
     /**
      * Display a listing of the resource.
      *
