@@ -20,7 +20,7 @@ class CheckRolAdmin
         $user= Auth::user();
         $roles=Rol::all();
         foreach ($roles as $role) {
-            if($role->id == $user->rol_id and $role->key == 'Administrador'){
+            if($role->id == $user->rol_id and $role->nombre == 'Administrador'){
                 return $next($request);
             }
         }
