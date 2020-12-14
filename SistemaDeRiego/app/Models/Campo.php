@@ -11,6 +11,8 @@ class Campo extends Model
 {
     use HasFactory,SoftDeletes;
 
+    protected $table='campos';
+
     protected $fillable =[
         'nombre','ref_tipoDeSuelo','ref_idUsuario'
     ];
@@ -26,9 +28,12 @@ class Campo extends Model
         });
     }
 
-    public function usuario() {
-        return $this->belongsTo(User::class);
+    
+    public function textura(){
+        return $this->belongsTo(TexturaDelSuelo::class,'id');
     }
+
+
 
     public function scopeFilter(Builder $query, array $filters) {
         if ( ! request("page")) {

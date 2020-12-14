@@ -26,14 +26,16 @@ class CampoController extends Controller
             return Inertia::render("Campos/Index",[
                "filters" => session()->only(["search","trashed"]),
                 "campos" => Campo::all()
+                ->filter(request()->only("search","trashed"))
+                ->paginate(10),
             ]);
         }else{
             return Inertia::render("Campos/Index",[
                 "filters" => session()->only(["search","trashed"]),
-                "campos" => Campo::with("usuario")
+                "campos" =>Campo::with('textura')
                     ->orderByDesc("id")
                     ->filter(request()->only("search","trashed"))
-                    ->paginate(5),
+                    ->paginate(10),
             ]);
         }
 

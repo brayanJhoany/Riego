@@ -10,10 +10,15 @@ class TexturaDelSuelo extends Model
 {
     use HasFactory;
 
+    protected $table='textura_de_suelos';
+
     protected $fillable = [
         'textura','da','cc','pmp' 
     ];
 
+    public function campo(){
+        return $this->belongsTo(Campo::class);
+    }
     // public function scopeFilter(Builder $query, array $filters) {
     //     if ( ! request("page")) {
     //         session()->put("search", $filters['search'] ?? null);

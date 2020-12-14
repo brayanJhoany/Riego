@@ -19,16 +19,25 @@ class CreateCampoTable extends Migration
      */
     public function up()
     {
+        Schema::create('textura_de_suelos', function (Blueprint $table) {
+            $table->id();
+            $table->string('textura')->unique();
+            $table->float('da');
+            $table->float('cc');
+            $table->float('pmp');
+            $table->timestamps();
+        });
+
         Schema::create('campos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->unsignedBigInteger('ref_tipoDeSuelo');
-            $table->foreign("ref_tipoDeSuelo")
-            ->references("id")->on("textura_del_suelos")
+            $table->unsignedBigInteger('texturaDeSuelo_id');
+            $table->foreign("texturaDeSuelo_id")
+            ->references("id")->on("textura_de_suelos")
             ->onDelete('cascade');
 
-            $table->unsignedBigInteger("ref_idUsuario");//referencia al usuario
-            $table->foreign("ref_idUsuario")
+            $table->unsignedBigInteger("user_id");//referencia al usuario
+            $table->foreign("user_id")
             ->references("id")->on("users")
             ->onDelete('cascade');
             $table->timestamps();
@@ -43,6 +52,7 @@ class CreateCampoTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('textura_de_suelos');
         Schema::dropIfExists('campo');
     }
 }

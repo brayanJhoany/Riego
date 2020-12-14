@@ -67,16 +67,6 @@ class User extends Authenticatable
         return $this->belongsTo(Rol::class);
     }
 
-
-    // protected  static function boot(){
-    //     parent::boot();
-    //     self::creating(function ($table) {
-    //         if ( ! app()->runningInConsole()) {
-    //             $table->user_id = auth()->id();
-    //         }
-    //     });
-    // }
-
     public function scopeFilter(Builder $query, array $filters) {
         if ( ! request("page")) {
             session()->put("search", $filters['search'] ?? null);

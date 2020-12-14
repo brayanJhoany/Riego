@@ -24,9 +24,9 @@ class CampoFactory extends Factory
     public function definition()
     {
         return [
-            'nombre'=>$this->faker->title,
-            'ref_tipoDeSuelo'=>TexturaDelSuelo::all()->random()->id,
-            'ref_idUsuario'=>User::all()->random()->id,
+            'nombre'=>$this->faker->name,
+            'texturaDeSuelo_id'=>TexturaDelSuelo::all()->random()->id,
+            'user_id'=>User::all()->random()->id,
         ];
     }
 }
