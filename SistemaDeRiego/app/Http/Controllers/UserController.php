@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+
+
+
 class UserController extends Controller
 {
 
@@ -23,12 +24,27 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user=Auth::user();
-        if($user->rol_id == 1){
+         if ( ! session()->has("search")) {
+                session()->put("search", null);
+                session()->put("trashed", null);
+            }
 
-            return Inertia::render("Usuarios/Index",[
-                'usuarios'=>User::all(),
-            ]);
+        return Inertia::render("Usuarios/Index", [
+            "filters" => session()->only(["search", "trashed"]),
+            'usuarios'=>User::with('rol')
+                ->orderByDesc("id")
+                ->filter(\request()->only("search","trashed"))
+                ->paginate(5),
+
+        ]);
+            // validacion para usuario administrador
+        // $user=Auth::user();
+        // if($user->rol_id == 1)
+
+
+            // return Inertia::render("Usuarios/Index",[
+            //     'usuarios'=>User::with('rol')->get(),
+            // ]);
 
             // if ( ! session()->has("search")) {
             //     session()->put("search", null);
@@ -42,7 +58,7 @@ class UserController extends Controller
             //         ->filter(request()->only("search", "trashed"))
             //         ->paginate(5),
             // ]);
-        }
+
 
     }
 
@@ -53,11 +69,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user=Auth::user();
-        //si el usuario es administrador
-        if($user->rol_id == 1){
-            $usurios=User::all();
-        }
+
     }
 
     /**

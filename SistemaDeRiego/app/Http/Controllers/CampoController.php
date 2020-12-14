@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class CampoController extends Controller
@@ -10,11 +12,32 @@ class CampoController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function index()
     {
-        return Inertia::render("Campos/Index");
+        if ( ! session()->has("search")) {
+            session()->put("search", null);
+            session()->put("trashed", null);
+        }
+        $usuaro = Auth::user();
+        //si el usuario es administrador
+        if($usuaro->rol_id == 1){
+            return Inertia::render("Campos/Index",[
+               "filters" => session()->only(["search","trashed"]),
+                "campos" => Campo::all()
+            ]);
+        }else{
+            return Inertia::render("Campos/Index",[
+                "filters" => session()->only(["search","trashed"]),
+                "campos" => Campo::with("usuario")
+                    ->orderByDesc("id")
+                    ->filter(request()->only("search","trashed"))
+                    ->paginate(5),
+            ]);
+        }
+
+
     }
 
     /**

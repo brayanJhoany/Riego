@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger("rol_id");
-            $table->foreign("rol_id")->references("id")->on("rols");
+            $table->foreign("rol_id")
+            ->references("id")->on("rols");
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -25,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

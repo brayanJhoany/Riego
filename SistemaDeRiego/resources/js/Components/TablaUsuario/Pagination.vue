@@ -27,7 +27,7 @@
 export default {
     name: "Pagination",
     props: {
-        links: Array
+        links: Array// recibo la lista de usuarios para formar la paginacion.
     }
 }
 </script>
