@@ -17,7 +17,7 @@ class TexturaDelSuelo extends Model
     ];
 
     public function campo(){
-        return $this->belongsTo(Campo::class);
+        return $this->hasMany(Campo::class);
     }
     // public function scopeFilter(Builder $query, array $filters) {
     //     if ( ! request("page")) {

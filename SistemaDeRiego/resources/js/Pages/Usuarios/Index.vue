@@ -5,70 +5,33 @@
                 Lista de Usuarios
             </h2>
         </template>
-        <div class="container py-5">
-            <!-- me esta aliniando de dos columnas -->
-            <div class="grid grid-rows-1 text-center">
-                <div class="grid grid-cols-2">
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                        <label
-                            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+        <div class="grid grid-cols-3 gap-2 my-2">
+            <div class="text-center mr-10  col-start-3 ">
+                    <inertia-link :href="route('usuarios.create')" >
+                    <button 
+                        class="bg-green-500 rounded-lg hover:bg-green-800">
+                        <svg
+                            width="35"
+                            height="35"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
                         >
-                            Busca por nombre
-                        </label>
-                        <input
-                            v-model="form.search"
-                            class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            type="text"
-                            placeholder="Nombre del usuario"
-                        />
-                    </div>
-                    <div>
-                        <button
-                            class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-3 mt-5 px-4 rounded"
-                            type="button"
-                            @click="reset"
-                        >
-                            Restablecer filtros
-                        </button>
-                    </div>
-
-                    <div class="p-4 m-2">
-                        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-                            <label
-                                class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                            >
-                                Estados
-                            </label>
-                            <div class="relative">
-                                <select
-                                    v-model="form.trashed"
-                                    class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                >
-                                    <option value="with"
-                                        >Todos los usuarios</option
-                                    >
-                                    <option value="only"
-                                        >Sólo usuarios borrados</option
-                                    >
-                                </select>
-                                <div
-                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                                >
-                                    <svg
-                                        class="fill-current h-4 w-4"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path
-                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                                        />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                        </svg>
+                    </button>
+                    </inertia-link>
                 </div>
             </div>
+        
+
+            <!-- Modal -->
 
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -163,8 +126,31 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div  v-if="nuevoUsuarioModal" class="fixed overflow-x-hidden overflow-y-auto inset-0 flex justify-center items-center z-50">
+                <div
+                    class="relative mx-auto w-auto max-w-2xl"
+                >
+                    <div class="bg-white w-full  rounded max-w-2xl flex flex-col">
+                        <div class="text-2xl font-bold text-center">Nuevo usuario</div>
+                        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                            Necessitatibus laborum aut sit culpa quisquam harum nesciunt rerum saepe 
+                            officia ex enim delectus, aspernatur nulla? Repudiandae animi reiciendis eum quos aut!
+                        </span>
+                        <button class=" rounded bg-green-500 text-white px-6 mt-1 py-2 w-3/12 m-auto mb-4" @click="nuevoUsuarioModal=false">Close</button>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="nuevoUsuarioModal"
+            class="absolute z-40 inset-0  opacity-25 bg-black">
+
+            </div>
+
+            
     </app-layout>
+
+    
 </template>
 
 <script>
@@ -178,12 +164,19 @@ export default {
     components: { AppLayout, TabUsuario, Pagination },
     data() {
         return {
+            nuevoUsuarioModal:false,
             fields: ["titulo", "categoria", "nombre_autor"],
 
             form: {
                 search: this.filters.search,
                 trashed: this.filters.trashed
-            } 
+            },
+            usuario:{
+                nombre:null,
+                rol_id:null,
+                email:null,
+                password:null
+            }
         };
     },
     props: {
@@ -202,7 +195,8 @@ export default {
     methods: {
         reset() {
             this.form = mapValues(this.form, () => null);
-        }
+        },
+
     }
 };
 </script>

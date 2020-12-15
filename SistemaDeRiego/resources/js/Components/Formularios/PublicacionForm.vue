@@ -19,9 +19,6 @@
             />
         </div>
 
-
-
-
         <div class="mb-4">
             <text-input
                 label="Nombre del autor "

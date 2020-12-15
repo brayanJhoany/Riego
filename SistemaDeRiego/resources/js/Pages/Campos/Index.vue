@@ -42,55 +42,50 @@
                 </div>
             </div>
         </template>
-        <!-- v-for="campo in campos.data" :key="campo.id" -->
-         <div class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4  mt-5 ml-5 mr-5">
-            <div
+        <!-- Para usuarios regulares -->
+        <div
+            class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4  mt-5 ml-5 mr-5 "
+            v-if="$page.user.rol_id == 2"
+        >
+            <CardCam
                 class="flex flex-wrap  w-64"
                 v-for="campo in campos.data"
                 :key="campo.id"
-            >
-                <div class="rounded-lg overflow-hidden border mb-4">
-                    <div>
-                        <img class="object-cover" :src="card.imageUrl" />
-                    </div>
-                    <div class="container mb-0">
-                        <div class=" grid grid-rows-1 py-2 ">
-                            <p class="mt-0 mb-1">Nombre: {{campo.nombre}}</p>
-                        </div>
-                        <div class="grid grid-cols-2 col-end-10 py-2 mb-0">
-                            <p class="mt-0 mb-1  col-start-1 col-end-10">
-                                Tipo de suelo: arcilloso
-                            </p>
-                            <button class=" mx-auto col-start-11">
-                                <svg
-                                class="overflow-auto"
-                                width="30"
-                                height="30"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                :campo="campo"
+            />
         </div>
+        <!-- Para administradores -->
+        <div
+            class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4  mt-5 ml-5 mr-5"
+            v-else
+        >
+            <!-- <div
+                class="flex flex-wrap  w-64"
+                v-for="usuario in campos.data"
+                :key="usuario.id"
+            > -->
+                <CardCam
+                    class="flex flex-wrap  w-64"
+                    v-for="campo in campos.data"
+                    :key="campo.id"
+                    :campo="campo"
+                />
+            <!-- </div> -->
+        </div>
+            <div v-if="$page.user.rol_id == 1">
+                <pagination :links="campos.links" />
+            </div>
     </app-layout>
 </template>
 
 <script>
+import CardCam from "../../Components/CardCam.vue";
+import Pagination from "../../Components/TablaUsuario/Pagination.vue";
 import Button from "../../Jetstream/Button.vue";
 import AppLayout from "../../Layouts/AppLayout.vue";
 export default {
     name: "IndexCampo",
-    components: { AppLayout, Button },
+    components: { AppLayout, Button, CardCam, Pagination },
     data() {
         return {
             card: {
@@ -122,11 +117,4 @@ export default {
     }
 };
 </script>
-<style>
-border {
-  border-top-color: #CC0000;
-  border-right-color: blue;
-  border-bottom-color: #00FF00;
-  border-left-color: #CCC;
-}
-</style>
+

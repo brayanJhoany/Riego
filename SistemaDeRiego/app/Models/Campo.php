@@ -30,7 +30,11 @@ class Campo extends Model
 
     
     public function textura(){
-        return $this->belongsTo(TexturaDelSuelo::class,'id');
+        return $this->hasOne(TexturaDelSuelo::class,'id');
+    }
+
+    public function usuario(){
+        return $this->belongsTo(User::class,'id');
     }
 
 

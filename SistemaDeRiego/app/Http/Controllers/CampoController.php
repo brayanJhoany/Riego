@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campo;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -20,22 +21,23 @@ class CampoController extends Controller
             session()->put("search", null);
             session()->put("trashed", null);
         }
-        $usuaro = Auth::user();
+        $user = Auth::user();
         //si el usuario es administrador
-        if($usuaro->rol_id == 1){
+        if($user->rol_id == 1){
             return Inertia::render("Campos/Index",[
                "filters" => session()->only(["search","trashed"]),
-                "campos" => Campo::all()
+                "campos" => Campo::with('textura')
                 ->filter(request()->only("search","trashed"))
-                ->paginate(10),
+                ->paginate(5),
             ]);
         }else{
             return Inertia::render("Campos/Index",[
                 "filters" => session()->only(["search","trashed"]),
-                "campos" =>Campo::with('textura')
-                    ->orderByDesc("id")
-                    ->filter(request()->only("search","trashed"))
-                    ->paginate(10),
+                //  "campos" =>Auth::user()->campos
+                "campos" =>Campo::where('user_id', $user->id )
+                 ->orderByDesc("id")
+                 ->filter(request()->only("search","trashed"))
+                 ->paginate(5),
             ]);
         }
 
