@@ -99,7 +99,7 @@ export default {
             processing: false,
             form: {
                 name: null,
-                // rol_id:2,
+                rol_id:2,
                 email: null,
                 password: null,
                 password_confirmation: null,

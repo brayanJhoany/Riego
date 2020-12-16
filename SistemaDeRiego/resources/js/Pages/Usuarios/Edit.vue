@@ -2,7 +2,7 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Nuevo usuario
+                Editar el usuario {{ usuario.name }}
             </h2>
         </template>
         <div class="py-12">
@@ -28,51 +28,52 @@
                             type="submit
                             "
                         >
-                            <p class="my-auto mx-auto">Registrar usuario</p>
+                            <p class="my-auto mx-auto">Editar usuario</p>
                         </loading-button>
                     </template>
                 </form-user>
             </div>
         </div>
+
     </app-layout>
 </template>
 
 <script>
-import FormUser from "../../Components/Formularios/FormUser.vue";
-import LoadingButton from "../../Components/Formularios/LoadingButton";
+import FormUser from '../../Components/Formularios/FormUser.vue';
+import LoadingButton from '../../Components/Formularios/LoadingButton.vue';
 import AppLayout from "../../Layouts/AppLayout.vue";
 export default {
-    name: "CreateUser",
-    components: { AppLayout, FormUser, LoadingButton },
+    components: { AppLayout, FormUser,LoadingButton },
     props: {
         errors: Object,
+        usuario: Object,
         roles: Array
     },
     data() {
         return {
             processing: false,
             form: {
-                name: null,
-                email: null,
-                password: null,
-                rol_id: null
+                name: this.usuario.name,
+                email: this.usuario.email,
+                password: this.usuario.password,
+                rol_id: this.usuario.rol
             }
         };
     },
     methods: {
         submit() {
-            if(this.form.rol_id == 'Administrador'){
-                this.form.rol_id='1';
+            if (this.form.rol_id == "Administrador") {
+                this.form.rol_id = "1";
+            } else {
+                this.form.rol_id = "2";
             }
-            else{
-                this.form.rol_id='2';
-            }
-                console.log(this.form);
+            console.log(this.form);
 
-               this.processing=true;
-               this.$inertia.post(this.route('usuarios.store'),this.form)
-                 .then(()=>this.processing=false);
-        }
+            this.processing = true
+                this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
+                    .then(() => this.processing = false)
+        },
+        
     }
 };
 </script>

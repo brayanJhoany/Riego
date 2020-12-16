@@ -7,15 +7,22 @@
         >
             {{ label }}
         </label>
-        <input
+        <select
             :id="id"
             v-bind="$attrs"
-            :type="tipo"
             :class="{ 'border-red-400': error  }"
             :value="value"
             @input="$emit('input', $event.target.value)"
-            class="border  shadow appearance-none  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        />
+            class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        >   
+        
+            <option v-for="rol in roles" :key="rol.id" 
+            >
+                {{ rol.nombre }}
+            </option>
+            <!-- <option>Regular</option>
+            <option>Administrador</option> -->
+        </select>
         <div v-if="error" class="text-red-500">{{ error }}</div>
     </div>
 </template>
@@ -26,7 +33,7 @@ export default {
     name: "TextInput",
     mixins: [FormInput],
     props:{
-        tipo:String,
+        roles:Array,
     }
-}
+};
 </script>
