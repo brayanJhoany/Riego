@@ -1,15 +1,15 @@
 <template>
     <app-layout>
         <template #header>
-            <div class="grid grid-cols-3 gap-5">
-                <div>
+            <div class="grid grid-cols-3 gap-1">
+                <div class="col-start-1">
                     <h2
                         class="font-semibold text-xl text-gray-800 leading-tight"
                     >
                         Lista de Campos
                     </h2>
                 </div>
-                <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <div class="col-start-2   md:w-45 px-3 mb-6 md:mb-0">
                     <label
                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     >
@@ -21,8 +21,8 @@
                         placeholder="Nombre del usuario"
                     />
                 </div>
-                <div class="text-right  bg-teal-800  ">
-                    <button class="bg-yellow-400">
+                <div class=" col-start-3 text-center    ">
+                    <button class="bg-green-500 rounded-lg">
                         <svg
                             width="30"
                             height="30"

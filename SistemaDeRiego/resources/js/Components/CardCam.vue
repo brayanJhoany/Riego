@@ -5,7 +5,7 @@
         </div>
         <div class="container mb-0">
             <div class=" grid grid-rows-1 py-2 ">
-                <p class="mt-0 mb-1 flex-wrap truncate">Nombre: {{ campo.nombre }}</p>
+                <p class="mt-0 mb-1 ml-2 flex-wrap truncate">Nombre: {{ campo.nombre }}</p>
             </div>
             <div class="grid grid-cols-1 col-end-10 py-2 mb-0">
                 <!-- <p class="mt-0 mb-1  col-start-1 col-end-10">
@@ -27,6 +27,7 @@
                         />
                     </svg>
                 </button>
+                
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
-    <div class="min-h-screen bg-gray-100 ">
-        <nav class="bg-white border-b border-gray-100">
+    <div class="min-h-full bg-orange-50 " >
+        <nav class="bg-blue-800 border-b border-gray-200">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
@@ -13,13 +13,14 @@
                         </div>
 
                         <!-- Navigation Links -->
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                Dashboard
+                                <p class="text-white p-0">Dashboard</p>
                             </jet-nav-link>
                             <!-- Crud de usuario -->
                             <jet-nav-link v-show="$page.user.rol_id ==1" href="/usuarios" :active="route().current('usuarios')">
-                                Usuarios
+                                
+                                <p class="text-white p-0">Usuarios</p>
                             </jet-nav-link>
                             <!-- Crud de campos del usuario -->
                             <jet-nav-link href="/campos" :active="route().current('campos')">
@@ -232,6 +233,7 @@
             </div>
             <slot></slot>
         </main>
+
 
         <!-- Modal Portal -->
         <portal-target name="modal" multiple>
