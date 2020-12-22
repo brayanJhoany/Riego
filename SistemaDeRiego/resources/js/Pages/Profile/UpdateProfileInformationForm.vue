@@ -20,7 +20,8 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" v-show="! photoPreview">
-                    <img :src="user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-20 w-20 object-cover">
+                    <img v-if="user.profile_photo_path == null"  :src="user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-20 w-20 object-cover">
+                    <img v-else class="h-20 w-20  rounded-full object-cover" :src="'/storage/'+user.profile_photo_path"  />
                 </div>
 
                 <!-- New Profile Photo Preview -->

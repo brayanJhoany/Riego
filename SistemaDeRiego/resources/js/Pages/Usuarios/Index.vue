@@ -145,7 +145,7 @@
         </div>
 
       
-
+    
      
     </app-layout>
 </template>
@@ -157,13 +157,14 @@ import debounce from "lodash/debounce";
 import pickBy from "lodash/pickBy";
 import mapValues from "lodash/mapValues";
 import Pagination from "../../Components/TablaUsuario/Pagination.vue";
+    
 export default {
-    components: { AppLayout, TabUsuario, Pagination },
+    components: { AppLayout, TabUsuario, Pagination},
     data() {
         return {
             nuevoUsuarioModal: false,
             fields: ["titulo", "categoria", "nombre_autor"],
-
+            
             form: {
                 search: this.filters.search,
                 trashed: this.filters.trashed

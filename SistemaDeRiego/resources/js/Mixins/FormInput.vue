@@ -4,6 +4,7 @@ export default {
     props:{
         id:String,//identidicador
         value:String,//valor
+        valueImg:Object,
         label:String,//la etiqueta
         error:String,// los errores
     }

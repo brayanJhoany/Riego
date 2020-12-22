@@ -55,7 +55,8 @@ export default {
                 name: null,
                 email: null,
                 password: null,
-                rol_id: null
+                rol_id: null,
+                imagen:null
             }
         };
     },
