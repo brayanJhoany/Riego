@@ -68,10 +68,10 @@
 </template>
 
 <script>
-import TextInput from "./TextInput";
-import TextAreaInput from "./TexAreaInput";
-import ListInput from "./ListInput.vue";
-import ImagenInput from './ImagenInput.vue';
+import TextInput from "../Formulario/TextInput";
+import TextAreaInput from "../Formulario/TexAreaInput";
+import ListInput from "../Formulario/ListInput.vue";
+import ImagenInput from '../Formulario/ImagenInput.vue';
 import Input from '../../Jetstream/Input.vue';
 export default {
     name: "FormUsuer",

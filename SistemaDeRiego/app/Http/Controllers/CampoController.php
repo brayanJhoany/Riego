@@ -36,8 +36,8 @@ class CampoController extends Controller
             return Inertia::render("Campos/Index",[
                 "filters" => session()->only(["search","trashed"]),
                 //  "campos" =>Auth::user()->campos
-                "campos" =>Campo::with('usuario')
-                ->where('user_id'.$user->id)
+                "camposUsuario" =>Campo::with('usuario')
+                ->where('user_id',$user->id)
                  ->orderByDesc("id")
                  ->filter(request()->only("search","trashed"))
                  ->paginate(5),

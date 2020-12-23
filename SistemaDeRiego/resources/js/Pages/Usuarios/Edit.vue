@@ -23,7 +23,7 @@
                         </inertia-link>
                         <loading-button
                             :loading="processing"
-                            class="bg-indigo-400 rounded-lg hover:bg-indigo-900 focus:ring-opacity-50 
+                            class="bg-indigo-400 rounded-lg hover:bg-indigo-900 focus:ring-opacity-50
                              text-white font-bold transform motion-safe:hover:scale-110 hover:scale-110 motion-reduce:transform-none"
                             type="submit
                             "
@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import FormUser from '../../Components/Formularios/FormUser.vue';
-import LoadingButton from '../../Components/Formularios/LoadingButton.vue';
+import FormUser from '../../Components/ComponentesUsuario/FormUser.vue';
+import LoadingButton from '../../Components/Formulario/LoadingButton.vue';
 import AppLayout from "../../Layouts/AppLayout.vue";
 export default {
     components: { AppLayout, FormUser,LoadingButton },
@@ -73,7 +73,7 @@ export default {
                 this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
                     .then(() => this.processing = false)
         },
-        
+
     }
 };
 </script>

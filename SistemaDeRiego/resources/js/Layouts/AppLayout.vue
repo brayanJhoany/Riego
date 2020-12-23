@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-full bg-orange-50 " >
+    <div class="min-h-full bg-orange-50 "  >
         <nav class="bg-blue-800 border-b border-gray-200">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -281,3 +281,23 @@
         }
     }
 </script>
+<style >
+    html, body{
+      height:100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    #div1{
+      height: 80px;
+      width: 100%;
+      background-color: red;
+      justify-content: center;
+      align-content: center;
+    }
+
+    #div2{
+      height:100%;
+      width: 100%;
+    }
+</style>

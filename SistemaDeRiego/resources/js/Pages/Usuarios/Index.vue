@@ -2,7 +2,7 @@
     <app-layout>
         <template #header>
 
-            <div class="grid grid-cols-6  | | bg-blue-400">
+            <div class="grid grid-cols-6  | ">
                 <p class="col-start-1 col-end-2">
                     Lista de Usuarios
                 </p>
@@ -49,7 +49,7 @@
 
         <!-- Tabla de los usuarios -->
 
-        <div class="flex flex-col | pt-4 px-6 | bg-orange-500 | " >
+        <div class="flex flex-col | pt-4 px-6 |   " >
             <div class="    overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div
                     class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
@@ -139,32 +139,32 @@
                     <!-- <pagination :links="usuarios.links" /> -->
                 </div>
             </div>
-            <div class=" flex self-center | bg-red-500 |  "  >
+            <div class=" flex self-center | "  >
                  <pagination :links="usuarios.links" />
             </div>
         </div>
 
-      
-    
-     
+
+
+
     </app-layout>
 </template>
 
 <script>
 import AppLayout from "../../Layouts/AppLayout.vue";
-import TabUsuario from "@/Components/TablaUsuario/TabUsuario";
+import TabUsuario from "@/Components/ComponentesUsuario/TabUsuario";
 import debounce from "lodash/debounce";
 import pickBy from "lodash/pickBy";
 import mapValues from "lodash/mapValues";
-import Pagination from "../../Components/TablaUsuario/Pagination.vue";
-    
+import Pagination from "../../Components/Global/Pagination.vue";
+
 export default {
     components: { AppLayout, TabUsuario, Pagination},
     data() {
         return {
             nuevoUsuarioModal: false,
             fields: ["titulo", "categoria", "nombre_autor"],
-            
+
             form: {
                 search: this.filters.search,
                 trashed: this.filters.trashed

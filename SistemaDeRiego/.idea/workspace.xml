@@ -2,23 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3161b553-17e6-46ea-bc6e-d9575811c2d5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/Components/ComponentesCampo/CardCam.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SistemaDeRiego.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SistemaDeRiego.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CampoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Campo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Campo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/ImagenInput.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/Pagination.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/PublicacionForm.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/TablaUsuario/TabUsuario.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/TablaUsuario/TabUsuario.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/TexAreaInput.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Components/TextInput.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/CardCam.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Formularios/FormUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/ComponentesUsuario/FormUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Formularios/ImagenInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Formulario/ImagenInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Formularios/ListInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Formulario/ListInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Formularios/LoadingButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Formulario/LoadingButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Formularios/PublicacionForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Formulario/PublicacionForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Formularios/TexAreaInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Formulario/TexAreaInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/Formularios/TextInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Formulario/TextInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/TablaUsuario/Pagination.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/Global/Pagination.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Components/TablaUsuario/TabUsuario.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Components/ComponentesUsuario/TabUsuario.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Layouts/AppLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Campos/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Campos/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Usuarios/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Usuarios/Create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Pages/Usuarios/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Usuarios/Edit.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/Pages/Usuarios/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Pages/Usuarios/Index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -153,6 +156,7 @@
       <path value="$PROJECT_DIR$/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
       <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/vendor/laravel-lang/lang" />
     </include_path>
   </component>
   <component name="ProjectId" id="1lWGh5iMhgsMIiNW1hvfdp2rDew" />
@@ -168,6 +172,13 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\ProyectosLaravel\Riego\SistemaDeRiego\resources\js\Components\Global" />
+      <recent name="C:\xampp\htdocs\ProyectosLaravel\Riego\SistemaDeRiego\resources\js\Components\TablaUsuario" />
+      <recent name="C:\xampp\htdocs\ProyectosLaravel\Riego\SistemaDeRiego\resources\js\Components\ComponentesCampo" />
+    </key>
   </component>
   <component name="RunManager" selected="npm.watch">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -200,6 +211,8 @@
       <updated>1607705550028</updated>
       <workItem from="1607705551529" duration="626000" />
       <workItem from="1607905181894" duration="2738000" />
+      <workItem from="1608739055317" duration="190000" />
+      <workItem from="1608739419990" duration="285000" />
     </task>
     <servers />
   </component>

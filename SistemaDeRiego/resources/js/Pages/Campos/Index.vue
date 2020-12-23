@@ -24,7 +24,7 @@
                 </div>
                 <div class=" col-start-3 text-center    ">
                 <inertia-link :href="route('campos.create')">
-                    <button class="bg-green-500 rounded-lg hover:bg-green-800">
+                    <button class="bg-green-500  hover:bg-green-800 | rounded-xl">
                         <svg
                             width="35"
                             height="35"
@@ -52,7 +52,7 @@
         >
             <CardCam
                 class="flex flex-wrap  w-64"
-                v-for="campo in campos.data"
+                v-for="campo in camposUsuario.data"
                 :key="campo.id"
                 :campo="campo"
             />
@@ -76,12 +76,15 @@
             <div v-if="$page.user.rol_id == 1">
                 <pagination :links="campos.links" />
             </div>
+            <div v-else>
+                <pagination :links="camposUsuario.links" />
+            </div>
     </app-layout>
 </template>
 
 <script>
-import CardCam from "../../Components/CardCam.vue";
-import Pagination from "../../Components/TablaUsuario/Pagination.vue";
+import CardCam from "../../Components/ComponentesCampo/CardCam.vue";
+import Pagination from "../../Components/Global/Pagination.vue";
 import Button from "../../Jetstream/Button.vue";
 import AppLayout from "../../Layouts/AppLayout.vue";
 import debounce from "lodash/debounce";
@@ -104,6 +107,7 @@ export default {
     },
     props: {
         campos: Object,
+        camposUsuario:Object,
         filters: Object
     },
     watch: {
