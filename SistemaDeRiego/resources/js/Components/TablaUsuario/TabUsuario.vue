@@ -73,8 +73,8 @@
 <script>
 import Button from "../../Jetstream/Button.vue";
 import JetConfirmationModal from "../../Jetstream/ConfirmationModal";
-    import JetSecondaryButton from "../../Jetstream/SecondaryButton";
-    import JetDangerButton from "../../Jetstream/DangerButton";
+import JetSecondaryButton from "../../Jetstream/SecondaryButton";
+import JetDangerButton from "../../Jetstream/DangerButton";
 export default {
     components: { Button , JetConfirmationModal, JetDangerButton, JetSecondaryButton },
     name: "TabUsuario",

@@ -16,16 +16,18 @@
                         Busca Campo
                     </label>
                     <input
+                    v-model="form.search"
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         type="text"
                         placeholder="Nombre del usuario"
                     />
                 </div>
                 <div class=" col-start-3 text-center    ">
-                    <button class="bg-green-500 rounded-lg">
+                <inertia-link :href="route('campos.create')">
+                    <button class="bg-green-500 rounded-lg hover:bg-green-800">
                         <svg
-                            width="30"
-                            height="30"
+                            width="35"
+                            height="35"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -39,6 +41,7 @@
                             />
                         </svg>
                     </button>
+                </inertia-link>
                 </div>
             </div>
         </template>
@@ -59,18 +62,16 @@
             class="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4  mt-5 ml-5 mr-5"
             v-else
         >
-            <!-- <div
-                class="flex flex-wrap  w-64"
-                v-for="usuario in campos.data"
-                :key="usuario.id"
-            > -->
+            <!-- <div  v-for="usuario in campos.data"
+                    :key="usuario.id">
+
+            </div> -->
                 <CardCam
                     class="flex flex-wrap  w-64"
                     v-for="campo in campos.data"
                     :key="campo.id"
                     :campo="campo"
                 />
-            <!-- </div> -->
         </div>
             <div v-if="$page.user.rol_id == 1">
                 <pagination :links="campos.links" />
@@ -83,6 +84,10 @@ import CardCam from "../../Components/CardCam.vue";
 import Pagination from "../../Components/TablaUsuario/Pagination.vue";
 import Button from "../../Jetstream/Button.vue";
 import AppLayout from "../../Layouts/AppLayout.vue";
+import debounce from "lodash/debounce";
+import pickBy from "lodash/pickBy";
+import mapValues from "lodash/mapValues";
+
 export default {
     name: "IndexCampo",
     components: { AppLayout, Button, CardCam, Pagination },
@@ -90,11 +95,11 @@ export default {
         return {
             card: {
                 imageUrl: "/storage/MisImagenes/fondo.jpg"
+            },
+            form: {
+                search: this.filters.search,
+                trashed: this.filters.trashed
             }
-            // form: {
-            //     search: this.filters.search,
-            //     trashed: this.filters.trashed
-            // }
         };
     },
     props: {
@@ -102,13 +107,13 @@ export default {
         filters: Object
     },
     watch: {
-        // form: {
-        //     handler: debounce(function() {
-        //         let query = pickBy(this.form);
-        //         this.$inertia.replace(this.route("usuarios.index", query));
-        //     }, 500),
-        //     deep: true
-        // }
+        form: {
+            handler: debounce(function() {
+                let query = pickBy(this.form);
+                this.$inertia.replace(this.route("campos.index", query));
+            }, 500),
+            deep: true
+        }
     },
     methods: {
         reset() {

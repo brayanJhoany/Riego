@@ -1,17 +1,7 @@
 <template>
-    <div class="rounded-lg overflow-hidden border mb-4">
-        <div>
-            <img class="object-cover" :src="card.imageUrl" />
-        </div>
-        <div class="container mb-0">
-            <div class=" grid grid-rows-1 py-2 ">
-                <p class="mt-0 mb-1 ml-2 flex-wrap truncate">Nombre: {{ campo.nombre }}</p>
-            </div>
-            <div class="grid grid-cols-1 col-end-10 py-2 mb-0">
-                <!-- <p class="mt-0 mb-1  col-start-1 col-end-10">
-                    Tipo de suelo: {{campo.textura.textura}}
-                </p> -->
-                <button class=" mx-auto col-start-11">
+    <div class="rounded-lg overflow-hidden border mb-4" >
+        <div >
+            <button @click="abrirMenu = !abrirMenu" class=" overflow-hidden  absolute | justify-items-end text-right ">
                     <svg
                         class="overflow-auto"
                         width="30"
@@ -27,26 +17,100 @@
                         />
                     </svg>
                 </button>
+
+                <div :class="{'block': abrirMenu, 'hidden': ! abrirMenu}" class="bg-white rounded-lg p-2 py-2 mt-10 w-48 shadow-xl absolute  ">
+                    <!-- <a href="#"  class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Ver</a> -->
+                    <a @click="editarCampo(campo)" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white ">Editar</a>
+                    <a @click="modalEliminar(campo)"  class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white ">Eliminar</a>
+                </div>
+            <img  class="object-cover" :src="card.imageUrl" />
+        </div>
+        <div class="container mb-0">
+            <div class=" grid grid-rows-1 py-2 ">
+                <p class="mt-0 mb-1 ml-2 flex-wrap truncate">Agricultor: {{ campo.usuario.name }}</p>
+                <p class="mt-0 mb-1 ml-2 flex-wrap truncate">Nombre: {{ campo.nombre }}</p>
+            </div>
+            <div >
+                
                 
             </div>
         </div>
+
+         <jet-confirmation-modal :show="showModal" @close="showModal = false">
+            <template #title>
+                Eliminar el usuario 
+            </template>
+
+            <template #content>
+                ¿Estás seguro que quieres eliminar el Usuario  ?
+            </template>
+
+            <template #footer>
+                <jet-secondary-button @click.native="showModal = false">
+                    Cancelar
+                </jet-secondary-button>
+
+                <jet-danger-button @click.native="eliminarCampo" class="ml-2" :class="{ 'opacity-25': processing }" :disabled="processing">
+                    Eliminar 
+                </jet-danger-button>
+            </template>
+        </jet-confirmation-modal>
     </div>
 </template>
 
 <script>
+import Button from "../Jetstream/Button"
+import JetConfirmationModal from "../Jetstream//ConfirmationModal";
+import JetSecondaryButton from "../Jetstream/SecondaryButton";
+import JetDangerButton from "../Jetstream/DangerButton";
 export default {
     name: "TabUsuario",
      data() {
         return {
+            abrirMenu:false,
+            processing: false,
+            showModal: false,
             card: {
                 imageUrl: "/storage/MisImagenes/fondo.jpg"
-            }
+            },
+            campoEliminar:{id:null}
         };
     },
+    components: { Button , JetConfirmationModal, JetDangerButton, JetSecondaryButton },
     props: {
         campo: Object,
         errors: Object
     },
-    methods: {}
+    methods: {
+         editarCampo(campo){
+             this.abrirMenu=false;
+            this.$inertia.get(this.route('campos.edit',campo.id));
+        },
+        modalEliminar(campo){
+            this.showModal=true;
+            this.abrirMenu=false;
+            // this.usuarioEliminar.name=usuario.name;
+            this.campoEliminar.id=campo.id;
+        },
+
+        /**
+         * Permite el eliminado logico de la reprecentación de un campo.
+         */
+        eliminarCampo() {
+            this.processing=true;
+            this.$inertia.delete(this.route('campos.destroy',this.campoEliminar.id))
+                .then(()=> this.processing=false);
+            
+            this.resetModalEliminarCampo();
+        },
+        /**
+         * Restablece los campos del objeto campo a eliminar a nulos, para poder volver a
+         * reutilizarlos en posteriores eliminaciones.
+         */
+        resetModalEliminarCampo(){
+            this.campo.id=null;
+            // this.usuarioEliminar.name=null;
+        }
+    }
 };
 </script>

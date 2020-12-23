@@ -34,7 +34,7 @@ class Campo extends Model
     }
 
     public function usuario(){
-        return $this->belongsTo(User::class,'id');
+        return $this->belongsTo(User::class,'user_id');
     }
 
 

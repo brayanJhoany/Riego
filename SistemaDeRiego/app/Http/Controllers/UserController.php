@@ -50,7 +50,7 @@ class UserController extends Controller
     public function create()
     {
         return Inertia::render("Usuarios/Create", [
-            "roles" => Rol::all()
+            "roles" => Rol::all() 
         ]);
     }
 
