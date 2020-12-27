@@ -7,21 +7,24 @@
         >
             {{ label }}
         </label>
-        <select
+        <select 
             :id="id"
             v-bind="$attrs"
             :class="{ 'border-red-400': error  }"
-            @input="$emit('input', $event.target.value2)"
+            :value="value"
+            @input="$emit('input', $event.target.value)"
             class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >   
-            <option value selected disabled> Regular</option>
-            <option v-for="rol in roles" :key="rol.id" v-bind:value2="rol.id"
+        <option value="" selected disabled>Textura</option> 
+            <option v-for="dato in texturas" :key="dato.id" v-bind:value="dato.id"
             >
-                {{ rol.nombre }} 
+                {{ dato.nombre }}
             </option>
 
         </select>
         <div v-if="error" class="text-red-500">{{ error }}</div>
+
+       
     </div>
 </template>
 
@@ -31,7 +34,7 @@ export default {
     name: "TextInput",
     mixins: [FormInput],
     props:{
-        roles:Array,
+        texturas:Array,
     }
 };
 </script>

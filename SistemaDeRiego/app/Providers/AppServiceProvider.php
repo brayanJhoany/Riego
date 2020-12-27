@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
         Inertia::share("flash", function () {
             return [
                 "success" => Session::get("success"),
+                "error" => Session::get("success"),
                 //  "user"=> Auth::with('roles')->get(),
             ];
         });

@@ -112,6 +112,7 @@ export default {
     },
     methods: {
         editarCampo(campo) {
+            console.log(campo);
             this.abrirMenu = false;
             this.$inertia.get(this.route("campos.edit", campo.id));
         },

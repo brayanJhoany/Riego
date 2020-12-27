@@ -55,23 +55,26 @@ export default {
                 name: null,
                 email: null,
                 password: null,
-                rol_id: null,
-                imagen:null
+                rol_id:null,
+                profile_photo_path:File
             }
         };
     },
     methods: {
         submit() {
-            if(this.form.rol_id == 'Administrador'){
-                this.form.rol_id='1';
-            }
-            else{
-                this.form.rol_id='2';
-            }
-                console.log(this.form);
 
+            //Creamos el formData
+                var data = new  FormData();
+                data.append('name', this.form.name);
+                data.append('email', this.form.email);
+                data.append('password', this.form.password);
+                data.append('rol_id', this.form.rol_id);
+                data.append('profile_photo_path', this.form.profile_photo_path);
+                data.append('_method', 'POST');
+
+            console.log(data);
                this.processing=true;
-               this.$inertia.post(this.route('usuarios.store'),this.form)
+               this.$inertia.post(this.route('usuarios.store'),data)
                  .then(()=>this.processing=false);
         }
     }

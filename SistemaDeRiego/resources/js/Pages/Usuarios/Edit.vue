@@ -42,6 +42,7 @@
 import FormUser from '../../Components/ComponentesUsuario/FormUser.vue';
 import LoadingButton from '../../Components/Formulario/LoadingButton.vue';
 import AppLayout from "../../Layouts/AppLayout.vue";
+import axios from 'axios';
 export default {
     components: { AppLayout, FormUser,LoadingButton },
     props: {
@@ -56,21 +57,26 @@ export default {
                 name: this.usuario.name,
                 email: this.usuario.email,
                 password: this.usuario.password,
-                rol_id: this.usuario.rol
+                rol_id: this.usuario.rol_id,
+                profile_photo_path : this.usuario.profile_photo_path
             }
         };
     },
     methods: {
         submit() {
-            if (this.form.rol_id == "Administrador") {
-                this.form.rol_id = "1";
-            } else {
-                this.form.rol_id = "2";
-            }
-            console.log(this.form);
+                var data2 = new  FormData();
+                
+                data2.append('name', this.form.name);
+                data2.append('email', this.form.email);
+                data2.append('password', this.form.password);
+                data2.append('rol_id', this.form.rol_id);
+                data2.append('profile_photo_path', this.form.profile_photo_path);
+                data2.append('_method', 'PATCH');
+                // PUT|PATCH
 
+            console.log(data2);
             this.processing = true
-                this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
+                this.$inertia.put(this.route('usuarios.update', this.usuario.id), data2)
                     .then(() => this.processing = false)
         },
 

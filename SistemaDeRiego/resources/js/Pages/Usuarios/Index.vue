@@ -1,8 +1,8 @@
 <template>
-    <app-layout>
+    <app-layout >
         <template #header>
 
-            <div class="grid grid-cols-6  | ">
+            <div class="grid grid-cols-6  | "> 
                 <p class="col-start-1 col-end-2">
                     Lista de Usuarios
                 </p>
@@ -48,16 +48,18 @@
 
 
         <!-- Tabla de los usuarios -->
+   
 
-        <div class="flex flex-col | pt-4 px-6 |   " >
+        <div class="flex flex-col | pt-4 px-6  |  min-h-full" >
             <div class="    overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div
                     class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
                 >
                     <div
-                        class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+                        class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg | h-full"
                     >
-                        <table class="min-w-full divide-y divide-gray-200">
+                    <!-- min-w-full min-h-full -->
+                        <table class=" divide-y divide-gray-200 min-w-full min-h-full">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th
@@ -93,7 +95,7 @@
                                 </tr>
                             </thead>
                             <tbody
-                                class="bg-white divide-y divide-gray-200"
+                                class="bg-white divide-y divide-gray-200 "
                                 v-if="usuarios.total > 0"
                             >
                                 <TabUsuario
@@ -104,7 +106,7 @@
                             </tbody>
                             <tbody
                                 v-else
-                                class="bg-white divide-y divide-gray-200"
+                                class="bg-white divide-y divide-gray-200 "
                             >
                                 <tr>
                                     <td class="text-sm text-gray-500">
@@ -135,16 +137,23 @@
                                 <!-- More rows... -->
                             </tbody>
                         </table>
+                        
                     </div>
-                    <!-- <pagination :links="usuarios.links" /> -->
+                    <div class=" flex self-center flex-| "  >
+                            <pagination :links="usuarios.links" />
+                        </div>
                 </div>
             </div>
-            <div class=" flex self-center | "  >
+            <!-- <div class=" flex self-center flex-| "  >
                  <pagination :links="usuarios.links" />
-            </div>
+            </div> -->
         </div>
 
-
+        <!-- <template #footer>
+            <div>
+                hola!!
+            </div>
+        </template> -->
 
 
     </app-layout>
@@ -173,7 +182,8 @@ export default {
                 nombre: null,
                 rol_id: null,
                 email: null,
-                password: null
+                password: null,
+                profile_photo_path:null,
             }
         };
     },
@@ -199,15 +209,6 @@ export default {
 </script>
 
 <style >
-.parent {
-  display: flex;
-  height: 100%; /* Or whatever */
-}
 
-.child {
-  width: 100px;  /* Or whatever */
-  height: 100px; /* Or whatever */
-  margin: auto;  /* Magic! */
-}
 
 </style>

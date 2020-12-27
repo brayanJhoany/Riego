@@ -6,6 +6,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Validator;
 
@@ -39,6 +40,9 @@ class UserController extends Controller
                 ->filter(\request()->only("search", "trashed"))
                 ->paginate(5),
 
+
+
+
         ]);
     }
 
@@ -50,7 +54,7 @@ class UserController extends Controller
     public function create()
     {
         return Inertia::render("Usuarios/Create", [
-            "roles" => Rol::all() 
+            "roles" => Rol::all()
         ]);
     }
 
@@ -62,18 +66,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $entrada=$request->only('name','rol_id','email','password','imagen');
-   
+        $entrada = $request->only('name', 'email', 'password', 'rol_id', 'profile_photo_path');
+        //VALIDACIONES
+        $this->validate(request(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'nullable'],
+            'rol_id' => ['required'],
+            'profile_photo_path' => ['nullable', 'image', 'max:8192']
+        ]);
 
-        User::create(
-            $this->validate(request(), [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'nullable'],
-                'rol_id' => ['required'],
-            ])
-        );
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado!');
+        try {
+            if ($request->hasFile('profile_photo_path')) {
+                // Si es así , almacenamos en la carpeta public/avatars
+                // esta estará dentro de public/defaults/
+                $imagen = $request->profile_photo_path->store('public/profile-photos');
+                $url = Storage::url($imagen);
+            }
+            $user = new User();
+            $user->name = $request['name'];
+            $user->email = $request['email'];
+            $user->password = bcrypt($request['password']);
+            $user->rol_id = $request['rol_id'];
+            $user->profile_photo_path = $url;
+            $user->save();
+            return redirect()->route('usuarios.index')->with('success', 'Usuario creado!');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return redirect()->route('usuarios.index')->with('error', 'error al crear el usuario');
+        }
     }
 
     /**
@@ -97,11 +117,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        if ($user->rol_id == 1) {
-            $rol = 'Administrador';
-        } else {
-            $rol = 'Regular';
-        }
         return Inertia::render('Usuarios/Edit', [
             'usuario' =>
             [
@@ -110,7 +125,7 @@ class UserController extends Controller
                 'email' => $user->email,
                 'password' => $user->password,
                 'rol_id' => $user->rol_id,
-                'rol' => $rol
+                'profile_photo_path' =>$user->profile_photo_path
             ],
             'roles' => Rol::all()
         ]);
@@ -123,18 +138,52 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $entrada = $request->only('name', 'email', 'password', 'rol_id');
-         Validator::make($entrada, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => "required|string|email|max:255|unique:users,email,".$id,
-            'password' => ['required', 'string', 'nullable'],
-            'rol_id' => ['required']
-        ])->validate();
-        User::find($id)->update($request->all());
-        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado!');
+        return $request;
+        $this->validate(request(), [
+            'name' => ['nullable', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['nullable', 'string', 'nullable'],
+            'rol_id' => ['nullable'],
+            'profile_photo_path' => ['nullable', 'image', 'max:8192']
+        ]);
 
+        try {
+            return $request;
+            // $url=null;
+            // if ($request->hasFile('profile_photo_path')) {
+            //     // Si es así , almacenamos en la carpeta public/avatars
+            //     // esta estará dentro de public/defaults/
+            //     $imagen = $request->profile_photo_path->store('public/profile-photos');
+            //     $url = Storage::url($imagen);
+            // }
+            // $user = User::find($id);
+            // if($request->name != null){
+            //     $user->name = $request['name'];
+            // }
+            // if($request->email != null){
+            //     $user->email = $request['email'];
+            // }
+            // if($request->name != null){
+            //     $user->name = $request['name'];
+            // }
+            // if($request->password != null){
+            //     $user->password = bcrypt($request['password']);
+            // }
+            // if($request->rol_id != null){
+            //     $user->rol_id = $request['rol_id'];
+            // }
+            // if($request->profile_photo_path != null){
+            //     $user->profile_photo_path = $url;
+            // }
+
+            // $user->save();
+            // return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado!');
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return redirect()->route('usuarios.index')->with('error', 'error al actualizado el usuario');
+        }
+        
     }
 
     /**
@@ -145,7 +194,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::find($id)->delete();
+        $user = User::find($id)->delete();
         return redirect()->route('usuarios.index')->with('success', 'usuario eliminado!');
     }
 }

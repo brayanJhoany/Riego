@@ -19,7 +19,11 @@ class CheckRolAdmin
     {
         $user= Auth::user();
         $roles=Rol::all();
+
         foreach ($roles as $role) {
+            if($role== null ||  $user ==null){
+                return redirect('/login');
+            }
             if($role->id == $user->rol_id and $role->nombre == 'Administrador'){
                 return $next($request);
             }

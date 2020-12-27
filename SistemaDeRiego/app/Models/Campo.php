@@ -14,7 +14,7 @@ class Campo extends Model
     protected $table='campos';
 
     protected $fillable =[
-        'nombre','ref_tipoDeSuelo','ref_idUsuario'
+        'nombre','texturaDeSuelo_id','user_id'
     ];
     //estamos asociando el id del usuario que crea el proyecto al
     // campo al momento de crearlo
@@ -23,14 +23,14 @@ class Campo extends Model
         parent::boot();
         self::creating(function ($table){
             if(!app()->runningInConsole()){
-                $table->ref_idUsuario=auth()->id();
+                $table->user_id=auth()->id();
             }
         });
     }
 
     
     public function textura(){
-        return $this->hasOne(TexturaDelSuelo::class,'id');
+        return $this->hasOne(TexturaDelSuelo::class,'texturaDeSuelo_id');
     }
 
     public function usuario(){

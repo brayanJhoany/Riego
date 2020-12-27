@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-full bg-orange-50 "  >
+    <div class="h-auto bg-orange-500"  >
         <nav class="bg-blue-800 border-b border-gray-200">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -224,7 +224,7 @@
         </header>
 
         <!-- Page Content -->
-        <main>
+        <main class=" ">
             <div class="py-4" v-if="$page.flash.success">
                 <div class="max-w-7xl mx-auto sm:px-4 lg:px-4">
                     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
@@ -232,8 +232,14 @@
                     </div>
                 </div>
             </div>
-            <slot></slot>
+            <slot ></slot>
         </main>
+
+        <!-- <footer class="bg-blue-500 | mt-10 ">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <slot name="footer"></slot>
+            </div>
+        </footer> -->
 
 
         <!-- Modal Portal -->
@@ -281,23 +287,24 @@
         }
     }
 </script>
-<style >
-    html, body{
-      height:100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-    }
-    #div1{
-      height: 80px;
-      width: 100%;
-      background-color: red;
-      justify-content: center;
-      align-content: center;
-    }
 
-    #div2{
-      height:100%;
-      width: 100%;
-    }
+<style >
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+footer {
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  color: rgb(243, 237, 237);
+}
+main{
+    position: fixed;
+    min-width: 100%;
+    min-height: 100%;
+}
 </style>

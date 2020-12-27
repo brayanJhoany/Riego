@@ -21,7 +21,7 @@ class CreateCampoTable extends Migration
     {
         Schema::create('textura_de_suelos', function (Blueprint $table) {
             $table->id();
-            $table->string('textura')->unique();
+            $table->string('nombre')->unique();
             $table->float('da');
             $table->float('cc');
             $table->float('pmp');

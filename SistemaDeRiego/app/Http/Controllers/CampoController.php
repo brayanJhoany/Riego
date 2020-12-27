@@ -7,6 +7,7 @@ use App\Models\TexturaDelSuelo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class CampoController extends Controller
@@ -18,33 +19,31 @@ class CampoController extends Controller
      */
     public function index()
     {
-        if ( ! session()->has("search")) {
+        if (!session()->has("search")) {
             session()->put("search", null);
             session()->put("trashed", null);
         }
         $user = Auth::user();
         //si el usuario es administrador
-        if($user->rol_id == 1){
-            return Inertia::render("Campos/Index",[
-               "filters" => session()->only(["search","trashed"]),
+        if ($user->rol_id == 1) {
+            return Inertia::render("Campos/Index", [
+                "filters" => session()->only(["search", "trashed"]),
                 // "campos" => User::with('campos')
-                'campos'=> Campo::with('usuario')
-                ->filter(request()->only("search","trashed"))
-                ->paginate(5),
+                'campos' => Campo::with('usuario')
+                    ->filter(request()->only("search", "trashed"))
+                    ->paginate(5),
             ]);
-        }else{
-            return Inertia::render("Campos/Index",[
-                "filters" => session()->only(["search","trashed"]),
+        } else {
+            return Inertia::render("Campos/Index", [
+                "filters" => session()->only(["search", "trashed"]),
                 //  "campos" =>Auth::user()->campos
-                "camposUsuario" =>Campo::with('usuario')
-                ->where('user_id',$user->id)
-                 ->orderByDesc("id")
-                 ->filter(request()->only("search","trashed"))
-                 ->paginate(5),
+                "camposUsuario" => Campo::with('usuario')
+                    ->where('user_id', $user->id)
+                    ->orderByDesc("id")
+                    ->filter(request()->only("search", "trashed"))
+                    ->paginate(5),
             ]);
         }
-
-
     }
 
     /**
@@ -54,9 +53,19 @@ class CampoController extends Controller
      */
     public function create()
     {
+
+        
+        $usuario = Auth::user();
+        if($usuario->rol_id != 1){
+            return Inertia::render("Campos/Create", [
+                "texturasSuelo" => TexturaDelSuelo::all()
+            ]);
+        }
         return Inertia::render("Campos/Create", [
-            "Texturas" => TexturaDelSuelo::all()
+            "texturasSuelo" => TexturaDelSuelo::all(),
+            "listaUsuarios" => User::all()
         ]);
+
     }
 
     /**
@@ -67,7 +76,25 @@ class CampoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        if ($user->rol_id == 1) {
+            Campo::create(
+                $this->validate(request(), [
+                    'nombre' => ['required', 'string', 'max:255'],
+                    'texturaDeSuelo_id' => ['required'],
+                    'user_id' => ['required'],
+                ])
+            );
+            return redirect()->route('campos.index')->with('success', 'Campo creado!');
+        } else {
+            Campo::create(
+                $this->validate(request(), [
+                    'nombre' => ['required', 'string', 'max:255'],
+                    'texturaDeSuelo_id' => ['required'],
+                ])
+            );
+            return redirect()->route('campos.index')->with('success', 'Campo creado!');
+        }
     }
 
     /**
@@ -78,7 +105,7 @@ class CampoController extends Controller
      */
     public function show($id)
     {
-        //
+       //
     }
 
     /**
@@ -89,16 +116,35 @@ class CampoController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
         $campo = Campo::find($id);
+        //si el usuario en la aplicacion es administrador
+        // necesitamos enviarle la lista de usuario.
+        if ($user->rol_id == 1) {
+            return Inertia::render('Campos/Edit', [
+                'campo' =>
+                [
+                    'id' => $campo->id,
+                    'nombre' =>$campo->nombre,
+                    'user_id' =>$campo->user_id,
+                    'texturaDeSuelo_id' =>$campo->texturaDeSuelo_id,
+                ],
+                'listaUsuarios' => User::all(),
+                'texturasSuelo' =>TexturaDelSuelo::all()
+            ]);
 
-        return Inertia::render('Campos/Edit', [
-            'Campo' =>
-            [
-                'id' => $campo->id,
-    
-            ],
-            'texturas' => TexturaDelSuelo::all()
-        ]);
+        } else {
+            return Inertia::render('Campos/Edit', [
+                'campo' =>
+                [
+                    'id' => $campo->id,
+                    'nombre' => $campo->nombre,
+                    'user_id' => $campo->user_id,
+                    'texturaDeSuelo_id' => $campo->texturaDeSuelo_id,
+                ],
+                'texturasSuelo' =>TexturaDelSuelo::all()
+            ]);
+        }
     }
 
     /**
@@ -110,7 +156,15 @@ class CampoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $entrada = $request->only('id', 'nombre', 'texturaDeSuelo_id', 'user_id');
+         Validator::make($entrada, [
+            'id' => ['required'],
+            'nombre' => "required|string|max:255",
+            'texturaDeSuelo_id' => ['required'],
+            'user_id' => ['required']
+        ])->validate();
+        Campo::find($id)->update($request->all());
+        return redirect()->route('campos.index')->with('success', 'Campo actualizado!');
     }
 
     /**
@@ -121,7 +175,7 @@ class CampoController extends Controller
      */
     public function destroy($id)
     {
-        $user=Campo::find($id)->delete();
+        $user = Campo::find($id)->delete();
         return redirect()->route('campos.index')->with('success', 'campo eliminado!');
     }
 }

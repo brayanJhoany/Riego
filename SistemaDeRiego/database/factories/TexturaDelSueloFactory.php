@@ -22,7 +22,7 @@ class TexturaDelSueloFactory extends Factory
     public function definition()
     {
         return [
-            'textura'=>$this->faker->unique()->name,
+            'nombre'=>$this->faker->unique()->name,
             'da'=>$this->faker->randomFloat(0,20),
             'cc'=>$this->faker->randomFloat(0,20),
             'pmp'=>$this->faker->randomFloat(0,20),
