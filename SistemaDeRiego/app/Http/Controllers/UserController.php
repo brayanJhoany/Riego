@@ -70,7 +70,7 @@ class UserController extends Controller
         $entrada = $request->only('name', 'email', 'password', 'rol_id', 'profile_photo_path');
         //VALIDACIONES
         $this->validate(request(), [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255',],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'nullable'],
             'rol_id' => ['required'],

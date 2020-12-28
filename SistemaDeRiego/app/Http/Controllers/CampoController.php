@@ -76,26 +76,37 @@ class CampoController extends Controller
      */
     public function store(Request $request)
     {
+        //  return $request;
         $user = Auth::user();
-        if ($user->rol_id == 1) {
-            Campo::create(
-                $this->validate(request(), [
-                    'nombre' => ['required', 'string', 'max:255'],
-                    'texturaDeSuelo_id' => ['required'],
-                    'user_id' => ['required'],
-                ])
-            );
-            return redirect()->route('campos.index')->with('success', 'Campo creado!');
-        } else {
-            Campo::create(
-                $this->validate(request(), [
-                    'nombre' => ['required', 'string', 'max:255'],
-                    'texturaDeSuelo_id' => ['required'],
-                ])
-            );
-            return redirect()->route('campos.index')->with('success', 'Campo creado!');
+        // $entradas = $request->only('nombre', 'texturaDeSuelo_id','user_id');
+        $this->validate(request(), [
+            'nombre' => ['required', 'string', 'max:255'], 
+            'texturaDeSuelo_id' => ['required'],
+            'user_id' => ['required'],
+        ]);
+        try {
+            $campo = new Campo();
+            if ($user->rol_id == 1) {
+                $campo->nombre =$request['nombre'];
+                $campo->texturaDeSuelo_id =$request['texturaDeSuelo_id'];
+                $campo->user_id = $request['user_id'];
+                $campo->save();
+                return redirect()->route('campos.index')->with('success', 'Campo creado usuario administrador!');
+            } else {
+                $campo->nombre =$request['nombre'];
+                $campo->texturaDeSuelo_id =$request['texturaDeSuelo_id'];
+                $campo->user_id =$user->id;
+                $campo->save();
+                return redirect()->route('campos.index')->with('success', 'Campo creado usuario regular!');
+            }
+               
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return redirect()->route('campos.index')->with('error', 'error en los datos');
         }
-    }
+        
+         
+    } 
+    
 
     /**
      * Display the specified resource.

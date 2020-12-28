@@ -18,15 +18,15 @@ class Campo extends Model
     ];
     //estamos asociando el id del usuario que crea el proyecto al
     // campo al momento de crearlo
-    protected static function boot()
-    {
-        parent::boot();
-        self::creating(function ($table){
-            if(!app()->runningInConsole()){
-                $table->user_id=auth()->id();
-            }
-        });
-    }
+    // protected static function boot()
+    // {
+    //     parent::boot();
+    //     self::creating(function ($table){
+    //         if(!app()->runningInConsole()){
+    //             $table->user_id=auth()->id();
+    //         }
+    //     });
+    // }
 
     
     public function textura(){
