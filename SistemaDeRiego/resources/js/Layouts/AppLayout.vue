@@ -1,6 +1,6 @@
 <template>
-    <div class="h-auto bg-orange-500"  >
-        <nav class="bg-blue-800 border-b border-gray-200">
+    <div class="min-h-screen bg-gray-100">
+        <nav class="bg-white border-b border-gray-100">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
@@ -15,12 +15,12 @@
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                <p class="text-white p-0">Dashboard</p>
+                                <p class="text-black p-0">Dashboard</p>
                             </jet-nav-link>
                             <!-- Crud de usuario -->
                             <jet-nav-link v-show="$page.user.rol_id ==1" href="/usuarios" :active="route().current('usuarios')">
                                 
-                                <p class="text-white p-0">Usuarios</p>
+                                <p class="text-black p-0">Usuarios</p>
                             </jet-nav-link>
                             <!-- Crud de campos del usuario -->
                             <jet-nav-link href="/campos" :active="route().current('campos')">
@@ -49,8 +49,7 @@
                             <jet-dropdown align="right" width="48">
                                 <template #trigger>
                                     <button v-if="$page.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                        <img  class="h-8 w-8 rounded-full object-cover" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
-
+                                        <img class="h-8 w-8 rounded-full object-cover" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
                                     </button>
 
                                     <button v-else class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -117,9 +116,9 @@
                                     </template>
 
                                     <!-- Authentication -->
-                                    <form @submit.prevent="logout">
+                                    <form @click="logout">
                                         <jet-dropdown-link as="button">
-                                            Logout
+                                            cerrar sesion
                                         </jet-dropdown-link>
                                     </form>
                                 </template>
@@ -145,12 +144,16 @@
                     <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                         Dashboard
                     </jet-responsive-nav-link>
+
+                    <jet-nav-link href="/publicaciones" :active="$page.currentRouteName == 'publicaciones'">
+                        Publicaciones
+                    </jet-nav-link>
                 </div>
 
                 <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-gray-200">
                     <div class="flex items-center px-4">
-                        <div  class="flex-shrink-0">
+                        <div class="flex-shrink-0">
                             <img class="h-10 w-10 rounded-full" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
                         </div>
 
@@ -224,7 +227,7 @@
         </header>
 
         <!-- Page Content -->
-        <main class=" ">
+        <main>
             <div class="py-4" v-if="$page.flash.success">
                 <div class="max-w-7xl mx-auto sm:px-4 lg:px-4">
                     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
@@ -232,15 +235,8 @@
                     </div>
                 </div>
             </div>
-            <slot ></slot>
+            <slot></slot>
         </main>
-
-        <!-- <footer class="bg-blue-500 | mt-10 ">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <slot name="footer"></slot>
-            </div>
-        </footer> -->
-
 
         <!-- Modal Portal -->
         <portal-target name="modal" multiple>
@@ -280,31 +276,10 @@
             },
 
             logout() {
-                axios.post(route('logout').url()).then(response => {
-                    window.location = '/';
-                })
+                axios.post("/logout").then((response) => {
+                    window.location = "/";
+                });
             },
         }
     }
 </script>
-
-<style >
-html {
-  min-height: 100%;
-  position: relative;
-}
-
-footer {
-  background-color: black;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-  color: rgb(243, 237, 237);
-}
-main{
-    position: fixed;
-    min-width: 100%;
-    min-height: 100%;
-}
-</style>
