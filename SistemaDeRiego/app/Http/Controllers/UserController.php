@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
 use function GuzzleHttp\Promise\all;
@@ -123,7 +124,7 @@ class UserController extends Controller
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
-                'password' => $user->password,
+                'password' => null,
                 'rol_id' => $user->rol_id,
                 'profile_photo_path' =>$user->profile_photo_path
             ],
@@ -140,46 +141,44 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request;
         $this->validate(request(), [
             'name' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['nullable', 'string', 'email', 'max:255',  Rule::unique('users')->ignore($id)],
             'password' => ['nullable', 'string', 'nullable'],
             'rol_id' => ['nullable'],
             'profile_photo_path' => ['nullable', 'image', 'max:8192']
         ]);
 
         try {
-            return $request;
-            // $url=null;
-            // if ($request->hasFile('profile_photo_path')) {
-            //     // Si es así , almacenamos en la carpeta public/avatars
-            //     // esta estará dentro de public/defaults/
-            //     $imagen = $request->profile_photo_path->store('public/profile-photos');
-            //     $url = Storage::url($imagen);
-            // }
-            // $user = User::find($id);
-            // if($request->name != null){
-            //     $user->name = $request['name'];
-            // }
-            // if($request->email != null){
-            //     $user->email = $request['email'];
-            // }
-            // if($request->name != null){
-            //     $user->name = $request['name'];
-            // }
-            // if($request->password != null){
-            //     $user->password = bcrypt($request['password']);
-            // }
-            // if($request->rol_id != null){
-            //     $user->rol_id = $request['rol_id'];
-            // }
-            // if($request->profile_photo_path != null){
-            //     $user->profile_photo_path = $url;
-            // }
+            $url=null;
+            if ($request->hasFile('profile_photo_path')) {
+                // Si es así , almacenamos en la carpeta public/avatars
+                // esta estará dentro de public/defaults/
+                $imagen = $request->profile_photo_path->store('public/profile-photos');
+                $url = Storage::url($imagen);
+            }
+            $user = User::find($id);
+            if($request->name != null){
+                $user->name = $request['name'];
+            }
+            if($request->email != null){
+                $user->email = $request['email'];
+            }
+            if($request->name != null){
+                $user->name = $request['name'];
+            }
+            if($request->password != null){
+                $user->password = bcrypt($request['password']);
+            }
+            if($request->rol_id != null){
+                $user->rol_id = $request['rol_id'];
+            }
+            if($request->profile_photo_path != null){
+                $user->profile_photo_path = $url;
+            }
 
-            // $user->save();
-            // return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado!');
+            $user->save();
+            return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado!');
         } catch (\Illuminate\Database\QueryException $ex) {
             return redirect()->route('usuarios.index')->with('error', 'error al actualizado el usuario');
         }

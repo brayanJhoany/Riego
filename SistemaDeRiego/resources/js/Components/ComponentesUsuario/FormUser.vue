@@ -23,6 +23,21 @@
                 />
                 <div v-if="errors.name" class="text-red-500">{{ errors.name }}</div>
             </div>
+            <div class="mb-4   ">
+                <label
+                    :class="{ 'text-red-400': errors.password }"
+                    class="block text-gray-700 text-sm font-bold mb-2"
+                >
+                    contraseña del usuario
+                </label>
+                <input
+                    v-model="form.password"
+                    :error="errors.password"
+                    type="password"
+                    class="border shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
+                <div v-if="errors.password" class="text-red-500">{{ errors.password }}</div>
+            </div>
             <div class="mb-4  ">
                 <label
                     :class="{ 'text-red-400': errors.email }"

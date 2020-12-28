@@ -70,13 +70,12 @@ export default {
                 data2.append('email', this.form.email);
                 data2.append('password', this.form.password);
                 data2.append('rol_id', this.form.rol_id);
-                data2.append('profile_photo_path', this.form.profile_photo_path);
-                data2.append('_method', 'PATCH');
+                data2.append('profile_photo_path', null);
                 // PUT|PATCH
 
             console.log(data2);
             this.processing = true
-                this.$inertia.put(this.route('usuarios.update', this.usuario.id), data2)
+                this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
                     .then(() => this.processing = false)
         },
 

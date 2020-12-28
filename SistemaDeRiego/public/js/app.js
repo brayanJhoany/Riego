@@ -2331,6 +2331,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -3875,6 +3890,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_DropdownLink__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/DropdownLink */ "./resources/js/Jetstream/DropdownLink.vue");
 /* harmony import */ var _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/NavLink */ "./resources/js/Jetstream/NavLink.vue");
 /* harmony import */ var _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/ResponsiveNavLink */ "./resources/js/Jetstream/ResponsiveNavLink.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -6416,12 +6435,11 @@ __webpack_require__.r(__webpack_exports__);
       data2.append('email', this.form.email);
       data2.append('password', this.form.password);
       data2.append('rol_id', this.form.rol_id);
-      data2.append('profile_photo_path', this.form.profile_photo_path);
-      data2.append('_method', 'PATCH'); // PUT|PATCH
+      data2.append('profile_photo_path', null); // PUT|PATCH
 
       console.log(data2);
       this.processing = true;
-      this.$inertia.put(this.route('usuarios.update', this.usuario.id), data2).then(function () {
+      this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form).then(function () {
         return _this.processing = false;
       });
     }
@@ -52776,6 +52794,46 @@ var render = function() {
               : _vm._e()
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "mb-4   " }, [
+            _c(
+              "label",
+              {
+                staticClass: "block text-gray-700 text-sm font-bold mb-2",
+                class: { "text-red-400": _vm.errors.password }
+              },
+              [_vm._v("\n                contraseña del usuario\n            ")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.password,
+                  expression: "form.password"
+                }
+              ],
+              staticClass:
+                "border shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+              attrs: { error: _vm.errors.password, type: "password" },
+              domProps: { value: _vm.form.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "password", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.password
+              ? _c("div", { staticClass: "text-red-500" }, [
+                  _vm._v(_vm._s(_vm.errors.password))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "mb-4  " }, [
             _c(
               "label",
@@ -55675,14 +55733,27 @@ var render = function() {
                                         "flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
                                     },
                                     [
-                                      _c("img", {
-                                        staticClass:
-                                          "h-8 w-8 rounded-full object-cover",
-                                        attrs: {
-                                          src: _vm.$page.user.profile_photo_url,
-                                          alt: _vm.$page.user.name
-                                        }
-                                      })
+                                      _vm.$page.user.profile_photo_path == null
+                                        ? _c("img", {
+                                            staticClass:
+                                              "rounded-full h-8 w-8 object-cover",
+                                            attrs: {
+                                              src:
+                                                _vm.$page.user
+                                                  .profile_photo_url,
+                                              alt: "Current Profile Photo"
+                                            }
+                                          })
+                                        : _c("img", {
+                                            staticClass:
+                                              "h-8 w-8  rounded-full object-cover",
+                                            attrs: {
+                                              src:
+                                                "http://127.0.0.1:8000/storage/" +
+                                                _vm.$page.user
+                                                  .profile_photo_path
+                                            }
+                                          })
                                     ]
                                   )
                                 : _c(
@@ -56047,13 +56118,22 @@ var render = function() {
             _c("div", { staticClass: "pt-4 pb-1 border-t border-gray-200" }, [
               _c("div", { staticClass: "flex items-center px-4" }, [
                 _c("div", { staticClass: "flex-shrink-0" }, [
-                  _c("img", {
-                    staticClass: "h-10 w-10 rounded-full",
-                    attrs: {
-                      src: _vm.$page.user.profile_photo_url,
-                      alt: _vm.$page.user.name
-                    }
-                  })
+                  _vm.$page.user.profile_photo_path == null
+                    ? _c("img", {
+                        staticClass: "rounded-full h-10 w-10 object-cover",
+                        attrs: {
+                          src: _vm.$page.user.profile_photo_url,
+                          alt: "Current Profile Photo"
+                        }
+                      })
+                    : _c("img", {
+                        staticClass: "h-10 w-10  rounded-full object-cover",
+                        attrs: {
+                          src:
+                            "http://127.0.0.1:8000/storage/" +
+                            _vm.$page.user.profile_photo_path
+                        }
+                      })
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "ml-3" }, [
