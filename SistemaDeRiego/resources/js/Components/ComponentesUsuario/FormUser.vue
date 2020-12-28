@@ -113,11 +113,11 @@
                             class="rounded-full"
                         >
                     </figure>
-                    <figure v-if="form.profile_photo_path != null" >
+                    <!-- <figure v-if="form.profile_photo_path != null  " >
                         <img  width="200" height="400" :src="form.profile_photo_path" alt="foto perfil"
                             class="rounded-full"
                         >
-                    </figure>
+                    </figure> -->
                 </div>
             </div>
         </div>
@@ -139,9 +139,10 @@ export default {
     name: "FormUsuer",
     data() {
         return {
+            mostrar:true,
             show:true,
             typePassword: "password",
-            imagenMiniatura: null
+            imagenMiniatura: this.form.profile_photo_path
         };
     },
     components: {

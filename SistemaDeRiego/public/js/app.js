@@ -2358,9 +2358,10 @@ __webpack_require__.r(__webpack_exports__);
   name: "FormUsuer",
   data: function data() {
     return {
+      mostrar: true,
       show: true,
       typePassword: "password",
-      imagenMiniatura: null
+      imagenMiniatura: this.form.profile_photo_path
     };
   },
   components: {
@@ -6501,31 +6502,30 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       processing: false,
-      form: {
+      form: this.$inertia.form({
+        '_method': 'PUT',
         name: this.usuario.name,
         email: this.usuario.email,
         password: this.usuario.password,
         rol_id: this.usuario.rol_id,
         profile_photo_path: this.usuario.profile_photo_path
-      }
+      })
     };
   },
   methods: {
     submit: function submit() {
-      var _this = this;
-
       var data2 = new FormData();
       data2.append('name', this.form.name);
       data2.append('email', this.form.email);
       data2.append('password', this.form.password);
       data2.append('rol_id', this.form.rol_id);
       data2.append('profile_photo_path', null); // PUT|PATCH
+      // this.form.profile_photo_path =null;
 
-      this.form.profile_photo_path = null;
+      console.log(this.form);
       this.processing = true;
-      this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form).then(function () {
-        return _this.processing = false;
-      });
+      this.form.post(this.route('usuarios.update', this.usuario.id), this.form); // this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
+      //     .then(() => this.processing = false)
     }
   }
 });
@@ -53088,21 +53088,7 @@ var render = function() {
                   }
                 })
               ]
-            ),
-            _vm._v(" "),
-            _vm.form.profile_photo_path != null
-              ? _c("figure", [
-                  _c("img", {
-                    staticClass: "rounded-full",
-                    attrs: {
-                      width: "200",
-                      height: "400",
-                      src: _vm.form.profile_photo_path,
-                      alt: "foto perfil"
-                    }
-                  })
-                ])
-              : _vm._e()
+            )
           ])
         ])
       ]),
@@ -59782,7 +59768,7 @@ var render = function() {
             _vm.$page.jetstream.managesProfilePhotos
               ? _c(
                   "div",
-                  { staticClass: "col-span-6 sm:col-span-4" },
+                  { staticClass: "col-span-6 sm:col-span-4 " },
                   [
                     _c("input", {
                       ref: "photo",

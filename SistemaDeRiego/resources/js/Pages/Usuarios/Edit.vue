@@ -53,13 +53,15 @@ export default {
     data() {
         return {
             processing: false,
-            form: {
+            form: this.$inertia.form(
+                {
+                '_method': 'PUT',
                 name: this.usuario.name,
                 email: this.usuario.email,
                 password: this.usuario.password,
                 rol_id: this.usuario.rol_id,
                 profile_photo_path : this.usuario.profile_photo_path
-            }
+            }) 
         };
     },
     methods: {
@@ -73,10 +75,12 @@ export default {
                 data2.append('profile_photo_path', null);
                 // PUT|PATCH
 
-            this.form.profile_photo_path =null;
+            // this.form.profile_photo_path =null;
+            console.log(this.form);
             this.processing = true
-                this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
-                    .then(() => this.processing = false)
+            this.form.post(this.route('usuarios.update', this.usuario.id), this.form)
+            // this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
+            //     .then(() => this.processing = false)
         },
 
     }
