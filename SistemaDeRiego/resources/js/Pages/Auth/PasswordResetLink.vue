@@ -25,12 +25,20 @@
                 />
                 <div v-if="errors.email" class="text-red-500">{{ errors.email }}</div>
             </div>
-            <button
+            <loading-button
+                :loading="processing"
+                class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200"
+                type="submit"
+            >
+                <p class="my-auto mx-auto">Recuperar mi contraseña</p>
+            </loading-button>
+
+            <!-- <button
                 class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200"
                 type="submit"
             >
                 Recuperar mi contraseña
-            </button>
+            </button> -->
         </form>
 
         <template #footer>
@@ -40,26 +48,30 @@
 </template>
 
 <script>
-import AuthLayout from "../../Layouts/AuthLayout";
-export default {
-    name: "PasswordResetLink",
-    components: {AuthLayout},
-    props: {
-        errors: Object,
-    },
-    data() {
-        return {
-            form: {
-                email: null
+import LoadingButton from '../../Components/Formulario/LoadingButton.vue';
+    import AuthLayout from "../../Layouts/AuthLayout";
+    export default {
+        name: "PasswordResetLink",
+        components: {AuthLayout,LoadingButton},
+     
+                   props: {
+            errors: Object,
+        },
+        data() {
+            return {
+                processing: false,
+                form: {
+                    email: null
+                }
+            }
+        },
+        methods: {
+            requestPasswordLink() {
+                this.processing = true
+                this.$inertia.post(this.route("password.email"), this.form).then(() => {
+                        this.processing = false
+                })
             }
         }
-    },
-    methods: {
-        requestPasswordLink() {
-            this.$inertia.post(this.route("password.email"), this.form).then(() => {
-
-            })
-        }
     }
-}
 </script>

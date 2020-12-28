@@ -68,29 +68,29 @@
 </template>
 
 <script>
-import AuthLayout from "../../Layouts/AuthLayout";
-export default {
-    name: "ResetPassword",
-    components: {AuthLayout},
-    props: {
-        errors: Object,
-    },
-    data() {
-        return {
-            form: {
-                email: null,
-                password: null,
-                password_confirmation: null
+    import AuthLayout from "../../Layouts/AuthLayout";
+    export default {
+        name: "ResetPassword",
+        components: {AuthLayout},
+        props: {
+            errors: Object,
+        },
+        data() {
+            return {
+                form: {
+                    email: null,
+                    password: null,
+                    password_confirmation: null
+                }
+            }
+        },
+        methods: {
+            updatePassword() {
+                this.form.token = this.$page.request.token;
+                this.$inertia.post(this.route("password.update"), this.form).then(() => {
+
+                });
             }
         }
-    },
-    methods: {
-        updatePassword() {
-            this.form.token = this.$page.request.token;
-            this.$inertia.post(this.route("password.update"), this.form).then(() => {
-
-            });
-        }
     }
-}
 </script>

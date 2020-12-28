@@ -27,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
             return [
                 "success" => Session::get("success"),
                 "error" => Session::get("success"),
-                //  "user"=> Auth::with('roles')->get(),
             ];
         });
     }

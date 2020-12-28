@@ -4701,7 +4701,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Layouts_AuthLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Layouts/AuthLayout */ "./resources/js/Layouts/AuthLayout.vue");
+/* harmony import */ var _Components_Formulario_LoadingButton_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Components/Formulario/LoadingButton.vue */ "./resources/js/Components/Formulario/LoadingButton.vue");
+/* harmony import */ var _Layouts_AuthLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Layouts/AuthLayout */ "./resources/js/Layouts/AuthLayout.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4744,16 +4753,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PasswordResetLink",
   components: {
-    AuthLayout: _Layouts_AuthLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AuthLayout: _Layouts_AuthLayout__WEBPACK_IMPORTED_MODULE_1__["default"],
+    LoadingButton: _Components_Formulario_LoadingButton_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
     errors: Object
   },
   data: function data() {
     return {
+      processing: false,
       form: {
         email: null
       }
@@ -4761,7 +4773,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     requestPasswordLink: function requestPasswordLink() {
-      this.$inertia.post(this.route("password.email"), this.form).then(function () {});
+      var _this = this;
+
+      this.processing = true;
+      this.$inertia.post(this.route("password.email"), this.form).then(function () {
+        _this.processing = false;
+      });
     }
   }
 });
@@ -5018,6 +5035,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AuthLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AuthLayout */ "./resources/js/Layouts/AuthLayout.vue");
+/* harmony import */ var _Components_Formulario_LoadingButton_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Components/Formulario/LoadingButton.vue */ "./resources/js/Components/Formulario/LoadingButton.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5045,14 +5071,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'VerifyEmail',
   components: {
-    AuthLayout: _Layouts_AuthLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AuthLayout: _Layouts_AuthLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
+    LoadingButton: _Components_Formulario_LoadingButton_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      processing: false,
+      verificacion: 'Hola!!'
+    };
   },
   methods: {
     sendNewVerificationEmail: function sendNewVerificationEmail() {
-      this.$inertia.post(this.route('verification.send')).then(function () {});
+      var _this = this;
+
+      this.processing = true;
+      this.$inertia.post(this.route('verification.send')).then(function () {
+        _this.processing = false; //this.verificacion='Correo enviado!!'
+      });
     }
   }
 });
@@ -57590,15 +57629,20 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c(
-            "button",
+            "loading-button",
             {
               staticClass:
                 "bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200",
-              attrs: { type: "submit" }
+              attrs: { loading: _vm.processing, type: "submit" }
             },
-            [_vm._v("\n            Recuperar mi contraseña\n        ")]
+            [
+              _c("p", { staticClass: "my-auto mx-auto" }, [
+                _vm._v("Recuperar mi contraseña")
+              ])
+            ]
           )
-        ]
+        ],
+        1
       )
     ]
   )
@@ -58103,7 +58147,7 @@ var render = function() {
             return [
               _c("section", [
                 _c("h3", { staticClass: "font-bold text-2xl" }, [
-                  _vm._v("¡Hola!")
+                  _vm._v(_vm._s(_vm.verificacion))
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "text-green-600 pt-2" }, [
@@ -58133,19 +58177,20 @@ var render = function() {
         },
         [
           _c(
-            "button",
+            "loading-button",
             {
               staticClass:
                 "bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200",
-              attrs: { type: "submit" }
+              attrs: { loading: _vm.processing, type: "submit" }
             },
             [
-              _vm._v(
-                "\n            Reenviar correo electrónico de verificación\n        "
-              )
+              _c("p", { staticClass: "my-auto mx-auto" }, [
+                _vm._v("Reenviar correo electrónico de verificación")
+              ])
             ]
           )
-        ]
+        ],
+        1
       )
     ]
   )
