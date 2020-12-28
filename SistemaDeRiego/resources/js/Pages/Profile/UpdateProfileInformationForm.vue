@@ -108,7 +108,7 @@
         },
 
         methods: {
-            updateProfileInformation() {
+            updateProfileInformation() { 
                 if (this.$refs.photo) {
                     this.form.photo = this.$refs.photo.files[0]
                 }
