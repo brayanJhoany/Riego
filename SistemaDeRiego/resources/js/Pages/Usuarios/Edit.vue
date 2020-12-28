@@ -73,7 +73,7 @@ export default {
                 data2.append('profile_photo_path', null);
                 // PUT|PATCH
 
-            console.log(data2);
+            this.form.profile_photo_path =null;
             this.processing = true
                 this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
                     .then(() => this.processing = false)

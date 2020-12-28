@@ -2349,7 +2349,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -6351,7 +6350,7 @@ __webpack_require__.r(__webpack_exports__);
         email: null,
         password: null,
         rol_id: null,
-        profile_photo_path: File
+        profile_photo_path: null
       }
     };
   },
@@ -6361,17 +6360,30 @@ __webpack_require__.r(__webpack_exports__);
 
       //Creamos el formData
       var data = new FormData();
-      data.append('name', this.form.name);
-      data.append('email', this.form.email);
-      data.append('password', this.form.password);
-      data.append('rol_id', this.form.rol_id);
-      data.append('profile_photo_path', this.form.profile_photo_path);
-      data.append('_method', 'POST');
-      console.log(data);
-      this.processing = true;
-      this.$inertia.post(this.route('usuarios.store'), data).then(function () {
-        return _this.processing = false;
-      });
+      data.append("name", this.form.name);
+      data.append("email", this.form.email);
+      data.append("password", this.form.password);
+      data.append("rol_id", this.form.rol_id);
+      console.log(this.form);
+      data.append("_method", "POST");
+      data.append("profile_photo_path", this.form.profile_photo_path);
+
+      if (this.form.profile_photo_path == null) {
+        this.processing = true;
+        this.$inertia.post(this.route("usuarios.store"), this.form).then(function () {
+          return _this.processing = false;
+        });
+      } else {
+        this.processing = true;
+        this.$inertia.post(this.route("usuarios.store"), data).then(function () {
+          return _this.processing = false;
+        });
+      } // console.log(data);
+      // this.processing = true;
+      // this.$inertia
+      //     .post(this.route("usuarios.store"), data)
+      //     .then(() => (this.processing = false));
+
     }
   }
 });
@@ -6470,7 +6482,7 @@ __webpack_require__.r(__webpack_exports__);
       data2.append('rol_id', this.form.rol_id);
       data2.append('profile_photo_path', null); // PUT|PATCH
 
-      console.log(data2);
+      this.form.profile_photo_path = null;
       this.processing = true;
       this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form).then(function () {
         return _this.processing = false;
@@ -53014,8 +53026,9 @@ var render = function() {
             : _vm._e(),
           _vm._v(" "),
           _c("div", { staticClass: "mb-4" }, [
-            _c("figure", [
-              _c("img", {
+            _c(
+              "figure",
+              {
                 directives: [
                   {
                     name: "show",
@@ -53023,16 +53036,34 @@ var render = function() {
                     value: _vm.imagen != null,
                     expression: "imagen != null"
                   }
-                ],
-                staticClass: "rounded-full",
-                attrs: {
-                  width: "200",
-                  height: "400",
-                  src: _vm.imagen,
-                  alt: "foto perfil"
-                }
-              })
-            ])
+                ]
+              },
+              [
+                _c("img", {
+                  staticClass: "rounded-full",
+                  attrs: {
+                    width: "200",
+                    height: "400",
+                    src: _vm.imagen,
+                    alt: "foto perfil"
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _vm.form.profile_photo_path != null
+              ? _c("figure", [
+                  _c("img", {
+                    staticClass: "rounded-full",
+                    attrs: {
+                      width: "200",
+                      height: "400",
+                      src: _vm.form.profile_photo_path,
+                      alt: "foto perfil"
+                    }
+                  })
+                ])
+              : _vm._e()
           ])
         ])
       ]),

@@ -78,7 +78,7 @@ class UserController extends Controller
         ]);
 
         try {
-            $url='profile-photos/8K9Mvzg368QtZbc5bx4OCdfM7390fJ8B2Cg5KxpF.jpg';
+            $url='/storage/profile-photos/MlajYmi1ezePkiiHw8YVFQTNz6c82KPHJEBjxHAb.jpg';
             if ($request->hasFile('profile_photo_path')) {
                 // Si es así , almacenamos en la carpeta public/avatars
                 // esta estará dentro de public/defaults/

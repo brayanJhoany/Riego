@@ -105,23 +105,22 @@
                 <div v-if="errors.profile_photo_path" class="text-red-500">
                     {{ errors.profile_photo_path }}
                 </div>
+                    <!-- <button>X</button> -->
+
                 <div class="mb-4">
-                    <figure>
-                        <img v-show="imagen != null" width="200" height="400" :src="imagen" alt="foto perfil"
+                    <figure v-show="imagen != null">
+                        <img  width="200" height="400" :src="imagen" alt="foto perfil"
+                            class="rounded-full"
+                        >
+                    </figure>
+                    <figure v-if="form.profile_photo_path != null" >
+                        <img  width="200" height="400" :src="form.profile_photo_path" alt="foto perfil"
                             class="rounded-full"
                         >
                     </figure>
                 </div>
             </div>
         </div>
-        
-
-        
-        
-
-
-  
-
         <div
             class="px-8 py-4 border-t border-gray-200 flex justify-center items-center"
         >
@@ -187,6 +186,7 @@ export default {
 
             reader.readAsDataURL(file);
         }
+
     }
 };
 </script>

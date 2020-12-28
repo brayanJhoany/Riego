@@ -55,27 +55,40 @@ export default {
                 name: null,
                 email: null,
                 password: null,
-                rol_id:null,
-                profile_photo_path:File
+                rol_id: null,
+                profile_photo_path: null
             }
         };
     },
     methods: {
-        submit() {
-
+        submit() { 
             //Creamos el formData
-                var data = new  FormData();
-                data.append('name', this.form.name);
-                data.append('email', this.form.email);
-                data.append('password', this.form.password);
-                data.append('rol_id', this.form.rol_id);
-                data.append('profile_photo_path', this.form.profile_photo_path);
-                data.append('_method', 'POST');
+            var data = new FormData();
+            data.append("name", this.form.name);
+            data.append("email", this.form.email);
+            data.append("password", this.form.password);
+            data.append("rol_id", this.form.rol_id);
+             console.log(this.form);
+            data.append("_method", "POST");
+            data.append("profile_photo_path", this.form.profile_photo_path);
 
-            console.log(data);
-               this.processing=true;
-               this.$inertia.post(this.route('usuarios.store'),data)
-                 .then(()=>this.processing=false);
+            if(this.form.profile_photo_path == null){
+             this.processing = true;
+            this.$inertia
+                .post(this.route("usuarios.store"), this.form)
+                .then(() => (this.processing = false));
+            }else{
+                this.processing = true;
+            this.$inertia
+                .post(this.route("usuarios.store"), data)
+                .then(() => (this.processing = false));
+            }
+
+            // console.log(data);
+            // this.processing = true;
+            // this.$inertia
+            //     .post(this.route("usuarios.store"), data)
+            //     .then(() => (this.processing = false));
         }
     }
 };
