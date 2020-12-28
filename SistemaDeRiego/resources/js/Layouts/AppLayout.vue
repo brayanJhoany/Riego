@@ -51,7 +51,7 @@
                                     <button v-if="$page.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                         <!-- <img   class="h-8 w-8 rounded-full object-cover" :src="'storage/'+$page.user.profile_photo_path" :alt="$page.user.name" /> -->
                                         <img v-if="$page.user.profile_photo_path == null"  :src="$page.user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-8 w-8 object-cover">
-                                        <img v-else class="h-8 w-8  rounded-full object-cover" :src="'http://127.0.0.1:8000/storage/'+$page.user.profile_photo_path" />
+                                        <img v-else class="h-8 w-8  rounded-full object-cover" :src="'http://127.0.0.1:8000'+$page.user.profile_photo_path" />
                                     </button>
 
                                     <button v-else class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -72,7 +72,7 @@
                                     </div>
 
                                     <jet-dropdown-link :href="route('profile.show')">
-                                        Profile
+                                        Perfil
                                     </jet-dropdown-link>
 
                                     <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">
@@ -143,13 +143,32 @@
             <!-- Responsive Navigation Menu -->
             <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
-                    <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                        Dashboard
-                    </jet-responsive-nav-link>
+                    <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                <p class="text-black p-0">Dashboard</p>
+                            </jet-nav-link>
+                            <!-- Crud de usuario -->
+                            <jet-nav-link v-show="$page.user.rol_id ==1" href="/usuarios" :active="route().current('usuarios')">
+                                
+                                <p class="text-black p-0">Usuarios</p>
+                            </jet-nav-link>
+                            <!-- Crud de campos del usuario -->
+                            <jet-nav-link href="/campos" :active="route().current('campos')">
+                                Mis campos
+                            </jet-nav-link>
 
-                    <jet-nav-link href="/publicaciones" :active="$page.currentRouteName == 'publicaciones'">
-                        Publicaciones
-                    </jet-nav-link>
+                            <!-- Crud de casetas de riego del usuario -->
+                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                Casetas de riego
+                            </jet-nav-link>
+                            <!-- Crud de planificacion del usuario -->
+                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                Planificacion de riegos
+                            </jet-nav-link>
+
+                            <!-- Crud de riegos del usuario -->
+                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                                Mis Riegos
+                            </jet-nav-link>
                 </div>
 
                 <!-- Responsive Settings Options -->
@@ -158,7 +177,7 @@
                         <div class="flex-shrink-0">
                             <!-- <img class="h-10 w-10 rounded-full" :src="$page.user.profile_photo_url" :alt="$page.user.name" /> -->
                             <img v-if="$page.user.profile_photo_path == null"  :src="$page.user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-10 w-10 object-cover">
-                            <img v-else class="h-10 w-10  rounded-full object-cover" :src="'http://127.0.0.1:8000/storage/'+$page.user.profile_photo_path" />
+                            <img v-else class="h-10 w-10  rounded-full object-cover" :src="'http://127.0.0.1:8000'+$page.user.profile_photo_path" />
                         </div>
 
                         <div class="ml-3">
@@ -169,7 +188,7 @@
 
                     <div class="mt-3 space-y-1">
                         <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
-                            Profile
+                            Perfil
                         </jet-responsive-nav-link>
 
                         <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">

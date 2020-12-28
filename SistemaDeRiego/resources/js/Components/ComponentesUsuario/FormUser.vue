@@ -1,7 +1,7 @@
 <template>
     <form
         @submit.prevent="$emit('submit')"
-        class="bg-blue-400 shadow-md rounded px-8 pt-2 pb-8 mb-4"
+        class="bg-white shadow-md rounded px-8 pt-2 pb-8 mb-4"
         enctype="multipart/form-data"
     >
         
@@ -30,13 +30,15 @@
                 >
                     contraseña del usuario
                 </label>
-                <input
-                    v-model="form.password"
-                    :error="errors.password"
-                    type="password"
-                    class="border shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                />
+                 <input
+                        v-model="form.password"
+                        :error="errors.password"
+                        type="password"
+                        class="border shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    />
                 <div v-if="errors.password" class="text-red-500">{{ errors.password }}</div>
+                <!-- Extra -->
+               
             </div>
             <div class="mb-4  ">
                 <label
@@ -81,11 +83,13 @@
             </div>
         </div>
 
-        <div class="col-start-2 col-end-3 | text-center">
+        <div class="col-start-2 col-end-3  ">
+
+
             <div class="mb-4">
                 <label
                     :class="{ 'text-red-400': errors.profile_photo_path }"
-                    class="block text-gray-700 text-sm font-bold mb-2"
+                    class=" block text-gray-700 text-sm font-bold mb-2"
                 >
                     Seleccione una imagen
                 </label>
@@ -136,6 +140,7 @@ export default {
     name: "FormUsuer",
     data() {
         return {
+            show:true,
             typePassword: "password",
             imagenMiniatura: null
         };

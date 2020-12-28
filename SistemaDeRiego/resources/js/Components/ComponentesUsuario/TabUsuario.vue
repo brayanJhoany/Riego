@@ -33,13 +33,6 @@
         <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
                 <a href="#" class="text-indigo-600 hover:text-indigo-900 ml-2 mr-2">Ver</a>
 
-                <!-- <inertia-link
-                class="px-4 flex items-center"
-                :href="route('usuarios.edit', usuario.id)"
-            >
-                <a href="#" class="text-indigo-600 hover:text-indigo-900 ml-2 mr-2">Editar</a>
-            </inertia-link> -->
-
             <a @click="editarUsuario(usuario)"  class="text-indigo-600 hover:text-indigo-900 ml-2 mr-2">Editar</a>
             <a @click="modalEliminar(usuario)" class="text-indigo-600 hover:text-indigo-900">Eliminar</a>
         </td>

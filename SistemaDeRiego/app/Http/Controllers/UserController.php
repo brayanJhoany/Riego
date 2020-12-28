@@ -78,10 +78,12 @@ class UserController extends Controller
         ]);
 
         try {
+            $url='profile-photos/8K9Mvzg368QtZbc5bx4OCdfM7390fJ8B2Cg5KxpF.jpg';
             if ($request->hasFile('profile_photo_path')) {
                 // Si es así , almacenamos en la carpeta public/avatars
                 // esta estará dentro de public/defaults/
                 $imagen = $request->profile_photo_path->store('public/profile-photos');
+                // $imagen = $request->profile_photo_path->store('profile-photos');
                 $url = Storage::url($imagen);
             }
             $user = new User();
