@@ -11,7 +11,7 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <!-- <welcome /> -->
 
-                    {{$page.user}}
+                    <!-- {{$page.user}} -->
 
                 </div>
             </div>

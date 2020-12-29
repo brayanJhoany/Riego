@@ -14,9 +14,9 @@
 
                         <!-- Rutas -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
-                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                            <!-- <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 <p class="text-black p-0">Dashboard</p>
-                            </jet-nav-link>
+                            </jet-nav-link> -->
                             <!-- Crud de usuario -->
                             <jet-nav-link v-show="$page.user.rol_id ==1" href="/usuarios" :active="route().current('usuarios')">
                                 
@@ -251,13 +251,7 @@
 
         <!-- Page Content -->
         <main>
-            <div class="py-4" v-if="$page.flash.success">
-                <div class="max-w-7xl mx-auto sm:px-4 lg:px-4">
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                        <span class="block sm:inline">{{ $page.flash.success }}</span>
-                    </div>
-                </div>
-            </div>
+            <flash-message/>
             <slot></slot>
         </main>
 
@@ -273,6 +267,7 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import FlashMessage from '../Components/UI/FlashMessage.vue'
 
     export default {
         components: {
@@ -281,6 +276,7 @@
             JetDropdownLink,
             JetNavLink,
             JetResponsiveNavLink,
+                FlashMessage,
         },
 
         data() {

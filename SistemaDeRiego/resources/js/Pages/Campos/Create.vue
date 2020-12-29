@@ -65,9 +65,9 @@ export default {
     },
     methods: {
         submit() {
-            // if(this.$page.user.rol_id == 2){
-            //     this.form.nombreUsuario=this.$page.user;
-            // }
+            if(this.$page.user.rol_id == 2){
+                this.form.user_id=this.$page.user.id;
+            }
                 console.log(this.form);
                this.processing=true;
                this.$inertia.post(this.route('campos.store'),this.form)

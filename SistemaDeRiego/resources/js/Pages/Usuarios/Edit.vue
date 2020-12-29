@@ -10,7 +10,7 @@
                 <form-user
                     :errors="errors"
                     :form="form"
-                    @submit="submit" 
+                    @submit="submit"
                     :roles="roles"
                 >
                     <template #buttons>
@@ -34,17 +34,16 @@
                 </form-user>
             </div>
         </div>
-
     </app-layout>
 </template>
 
 <script>
-import FormUser from '../../Components/ComponentesUsuario/FormUser.vue';
-import LoadingButton from '../../Components/Formulario/LoadingButton.vue';
+import FormUser from "../../Components/ComponentesUsuario/FormUser.vue";
+import LoadingButton from "../../Components/Formulario/LoadingButton.vue";
 import AppLayout from "../../Layouts/AppLayout.vue";
-import axios from 'axios';
+import axios from "axios";
 export default {
-    components: { AppLayout, FormUser,LoadingButton },
+    components: { AppLayout, FormUser, LoadingButton },
     props: {
         errors: Object,
         usuario: Object,
@@ -53,36 +52,36 @@ export default {
     data() {
         return {
             processing: false,
-            form: this.$inertia.form(
-                {
-                '_method': 'PUT',
+            form: this.$inertia.form({
+                _method: "PUT",
                 name: this.usuario.name,
                 email: this.usuario.email,
                 password: this.usuario.password,
                 rol_id: this.usuario.rol_id,
-                profile_photo_path : this.usuario.profile_photo_path
-            }) 
+                profile_photo_path: this.usuario.profile_photo_path
+            })
         };
     },
     methods: {
         submit() {
-                var data2 = new  FormData();
-                
-                data2.append('name', this.form.name);
-                data2.append('email', this.form.email);
-                data2.append('password', this.form.password);
-                data2.append('rol_id', this.form.rol_id);
-                data2.append('profile_photo_path', null);
-                // PUT|PATCH
+            var data2 = new FormData();
 
-            // this.form.profile_photo_path =null;
-            console.log(this.form);
-            this.processing = true
-            this.form.post(this.route('usuarios.update', this.usuario.id), this.form)
-            // this.$inertia.put(this.route('usuarios.update', this.usuario.id), this.form)
-            //     .then(() => this.processing = false)
-        },
+            data2.append("name", this.form.name);
+            data2.append("email", this.form.email);
+            data2.append("password", this.form.password);
+            data2.append("rol_id", this.form.rol_id);
+            data2.append("profile_photo_path", null);
 
+            if (typeof this.form.profile_photo_path == "string") {
+                this.form.profile_photo_path = null;
+            }
+            this.processing = true;
+            this.form.post(
+                this.route("usuarios.update", this.usuario.id),
+                this.form
+            );
+            this.processing = false;
+        }
     }
 };
 </script>

@@ -78,7 +78,7 @@ class UserController extends Controller
         ]);
 
         try {
-            $url='/storage/profile-photos/MlajYmi1ezePkiiHw8YVFQTNz6c82KPHJEBjxHAb.jpg';
+            $url='/storage/profile-photos/JFGZ47lYVq8nfbdJJ4BaBfGtO0mmCMVoXLhcLcrD.jpg';
             if ($request->hasFile('profile_photo_path')) {
                 // Si es así , almacenamos en la carpeta public/avatars
                 // esta estará dentro de public/defaults/
@@ -107,7 +107,19 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        // $user = User::find($id);
+        // return Inertia::render('Usuarios/Show', [
+        //     'usuario' =>
+        //     [
+        //         'id' => $user->id,
+        //         'name' => $user->name,
+        //         'email' => $user->email,
+        //         'password' => null,
+        //         'rol_id' => $user->rol_id,
+        //         'profile_photo_path' =>$user->profile_photo_path
+        //     ],
+        //     'roles' => Rol::all()
+        // ]);
     }
 
     /**

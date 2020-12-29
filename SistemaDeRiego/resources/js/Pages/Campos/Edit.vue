@@ -1,12 +1,11 @@
 <template>
     <app-layout>
-              <template #header>
-          <p class="col-start-1 col-end-2">
+        <template #header>
+            <p class="col-start-1 col-end-2">
                 Editar Campo
-            </p> 
-
-      </template>
-      <div class="py-12">
+            </p>
+        </template>
+        <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <form-campo
                     :errors="errors"
@@ -40,38 +39,40 @@
 </template>
 
 <script>
-import FormCampo from '../../Components/ComponentesCampo/FormCampo.vue';
-import LoadingButton from '../../Components/Formulario/LoadingButton.vue';
-import AppLayout from '../../Layouts/AppLayout.vue'
+import FormCampo from "../../Components/ComponentesCampo/FormCampo.vue";
+import LoadingButton from "../../Components/Formulario/LoadingButton.vue";
+import AppLayout from "../../Layouts/AppLayout.vue";
 export default {
-    name:"EditCampo",
-    components:{AppLayout, LoadingButton, FormCampo},
-    props:{
-        campo:null,
-        texturasSuelo:null,
-        listaUsuarios:null,
-        errors: Object,
+    name: "EditCampo",
+    components: { AppLayout, LoadingButton, FormCampo },
+    props: {
+        campo: null,
+        texturasSuelo: null,
+        listaUsuarios: null,
+        errors: Object
     },
-     data() {
+    data() {
         return {
             processing: false,
             form: {
-                id:this.campo.id,
+                id: this.campo.id,
                 nombre: this.campo.nombre,
-                texturaDeSuelo_id:this.campo.texturaDeSuelo_id,
-                user_id:this.campo.user_id,
+                texturaDeSuelo_id: this.campo.texturaDeSuelo_id,
+                user_id: this.campo.user_id
             }
         };
     },
     methods: {
         submit() {
             console.log(this.form);
-
-            this.processing = true
-                this.$inertia.put(this.route('campos.update', this.form.id), this.form)
-                    .then(() => this.processing = false)
-        },
-
+            // if (this.$page.user.rol_id == 2) {
+            //     this.form.user_id = this.$page.user.id;
+            // }
+            this.processing = true;
+            this.$inertia
+                .put(this.route("campos.update", this.form.id), this.form)
+                .then(() => (this.processing = false));
+        }
     }
-}
+};
 </script>

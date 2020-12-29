@@ -101,7 +101,7 @@ class CampoController extends Controller
             }
                
         } catch (\Illuminate\Database\QueryException $ex) {
-            return redirect()->route('campos.index')->with('error', 'error en los datos');
+            //return redirect()->route('campos.index')->with('error', 'error en los datos');
         }
         
          

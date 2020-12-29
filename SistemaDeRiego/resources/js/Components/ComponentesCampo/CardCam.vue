@@ -1,12 +1,12 @@
 <template>
-    <div class="rounded-lg overflow-hidden border mb-4">
-        <div>
+    <div class="rounded-lg overflow-hidden border  my-5">
+        <div class="">
             <button
                 @click="abrirMenu = !abrirMenu"
                 class=" overflow-hidden   absolute | rounded-lg  "
             >
                 <svg
-                    class="overflow-auto"
+                    class="overflow-auto "
                     width="30"
                     height="30"
                     xmlns="http://www.w3.org/2000/svg"
@@ -57,11 +57,11 @@
 
         <jet-confirmation-modal :show="showModal" @close="showModal = false">
             <template #title>
-                Eliminar el usuario
+                Eliminar el Campo {{campoEliminar.nombre}}
             </template>
 
             <template #content>
-                ¿Estás seguro que quieres eliminar el Usuario ?
+                ¿Estás seguro que quieres eliminar el campo {{campoEliminar.nombre}} ?
             </template>
 
             <template #footer>
@@ -97,7 +97,7 @@ export default {
             card: {
                 imageUrl: "/storage/MisImagenes/fondo.jpg"
             },
-            campoEliminar: { id: null }
+            campoEliminar: { id: null, nombre:null }
         };
     },
     components: {
@@ -121,6 +121,7 @@ export default {
             this.abrirMenu = false;
             // this.usuarioEliminar.name=usuario.name;
             this.campoEliminar.id = campo.id;
+            this.campoEliminar.nombre = campo.nombre;
         },
 
         /**
@@ -139,8 +140,8 @@ export default {
          * reutilizarlos en posteriores eliminaciones.
          */
         resetModalEliminarCampo() {
-            this.campo.id = null;
-            // this.usuarioEliminar.name=null;
+            this.campoEliminar.id=null;
+            this.campoEliminar.nombre=null;
         }
     }
 };
