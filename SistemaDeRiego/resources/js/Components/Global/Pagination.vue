@@ -6,11 +6,10 @@
                 :key="key"
                 class="mr-1 mb-1 px-4 py-3 text-sm border rounded text-gray-500"
             >
-                <!-- {{link.label.split(';')[1]}} -->
-                <div v-if="link.label.split(';')[1] == ' Anterior'">
+                <div v-if="link.label == '&laquo; Anterior' || link.label == '&laquo; Anterior'">
                     Anterior
                 </div>
-                <div v-if="link.label.split('&')[1] == ' Siguiente'">
+                <div v-if="link.label == 'Siguiente &raquo;'   ">
                     Siguiente
                 </div>
             </div>

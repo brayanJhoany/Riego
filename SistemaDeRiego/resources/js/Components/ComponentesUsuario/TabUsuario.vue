@@ -77,30 +77,23 @@
 
         <modal :show="verUsuario">
             <div class="px-6 py-4">
-                <div class="text-lg">
-                    <span class="text-2xl font-medium">
-                        
-                    </span >
-                </div>
-
                 <div class="mt-4 text-center">
-                    <!-- <div class="flex justify-center"> -->
                         <div class="flex justify-center mr-5">
                             <img
-                                class="h-20 w-20 text-center   rounded-full object-cover"
+                                class=" h-28 w-28 |    text-center   rounded-2xl object-cover"
                                 :src="usuarioMostrar.foto"
                             />
 
                             <div class="flex flex-col text-center mt-3 mb-4 ml-5">
-                                <span class="text-2xl font-medium">
-                                    Nombre: {{usuarioMostrar.name}}
+                                <span class="text-2xl font-extrabold uppercase" >
+                                     {{usuarioMostrar.name}}
                                     </span
                                 >
                                 <span class="text-md text-gray-400" >
-                                    Correo:{{usuarioMostrar.email}}
+                                    Correo: {{usuarioMostrar.email}}
                                 </span>
                                 <span class="text-md text-gray-400" >
-                                    Rol:{{usuarioMostrar.rol}}
+                                    Rol: {{usuarioMostrar.rol}}
                                 </span>
                                     
                             </div>
@@ -109,8 +102,9 @@
                 <!-- </div> -->
             </div>
 
-            <div class="px-6 py-4 bg-gray-100 text-right">
-                <button @click="verUsuario = !verUsuario" class="bg-red-400 rounded-lg block py-2 px-2 text-center">cerrar</button>
+            <div class="px-6 py-4 bg-gray-100 | grid grid-cols-3">
+                <button @click="verUsuario = !verUsuario" 
+                class="py-2 px-2 | col-start-2 | bg-red-400  text-white | rounded-lg block | text-center font-bold | col-start-2">cerrar</button>
             </div>
         </modal>
     </tr>

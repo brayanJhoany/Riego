@@ -59,7 +59,7 @@
                         class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg | h-full"
                     >
                     <!-- min-w-full min-h-full -->
-                        <table class=" divide-y divide-gray-200 min-w-full min-h-full">
+                        <table class=" divide-y divide-gray-200 min-w-full min-h-full ">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th

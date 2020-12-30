@@ -14,22 +14,27 @@
                     :roles="roles"
                 >
                     <template #buttons>
-                        <inertia-link :href="route('usuarios.index')">
-                            <button
-                                class="mr-10 bg-red-400 rounded-lg transform motion-safe:hover:scale-110 hover:scale-110 motion-reduce:transform-none"
-                            >
-                                Cancelar
-                            </button>
-                        </inertia-link>
-                        <loading-button
-                            :loading="processing"
-                            class="bg-indigo-400 rounded-lg hover:bg-indigo-900 focus:ring-opacity-50
-                             text-white font-bold transform motion-safe:hover:scale-110 hover:scale-110 motion-reduce:transform-none"
-                            type="submit
+                        <div class="grid grid-cols-6 gap-2">
+                            <div class="col-start-2">
+                                <inertia-link :href="route('usuarios.index')">
+                                    <button
+                                        class="px-6 py-2 |   bg-red-700  hover:bg-indigo-900 focus:ring-opacity-50 | text-white font-bold  rounded-lg |transform motion-safe:hover:scale-110 hover:scale-110 motion-reduce:transform-none"
+                                    >
+                                        Cancelar
+                                    </button>
+                                </inertia-link>
+                            </div>
+                            <div class="col-start-4">
+                                <loading-button
+                                :loading="processing"
+                                class=" px-6 py-2 |   bg-indigo-700  hover:bg-indigo-900 focus:ring-opacity-50 | text-white font-bold  rounded-lg |transform motion-safe:hover:scale-110 hover:scale-110 motion-reduce:transform-none"
+                                type="submit
                             "
-                        >
-                            <p class="my-auto mx-auto">Registrar usuario</p>
-                        </loading-button>
+                            >
+                                <p class="my-auto mx-auto">Registrar</p>
+                            </loading-button>
+                            </div>
+                        </div>
                     </template>
                 </form-user>
             </div>
@@ -61,27 +66,27 @@ export default {
         };
     },
     methods: {
-        submit() { 
+        submit() {
             //Creamos el formData
             var data = new FormData();
             data.append("name", this.form.name);
             data.append("email", this.form.email);
             data.append("password", this.form.password);
             data.append("rol_id", this.form.rol_id);
-             console.log(this.form);
+            console.log(this.form);
             data.append("_method", "POST");
             data.append("profile_photo_path", this.form.profile_photo_path);
 
-            if(this.form.profile_photo_path == null){
-             this.processing = true;
-            this.$inertia
-                .post(this.route("usuarios.store"), this.form)
-                .then(() => (this.processing = false));
-            }else{
+            if (this.form.profile_photo_path == null) {
                 this.processing = true;
-            this.$inertia
-                .post(this.route("usuarios.store"), data)
-                .then(() => (this.processing = false));
+                this.$inertia
+                    .post(this.route("usuarios.store"), this.form)
+                    .then(() => (this.processing = false));
+            } else {
+                this.processing = true;
+                this.$inertia
+                    .post(this.route("usuarios.store"), data)
+                    .then(() => (this.processing = false));
             }
 
             // console.log(data);

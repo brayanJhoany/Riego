@@ -31,7 +31,7 @@ class CampoController extends Controller
                 // "campos" => User::with('campos')
                 'campos' => Campo::with('usuario')
                     ->filter(request()->only("search", "trashed"))
-                    ->paginate(5),
+                    ->paginate(6),
             ]);
         } else {
             return Inertia::render("Campos/Index", [
@@ -91,13 +91,13 @@ class CampoController extends Controller
                 $campo->texturaDeSuelo_id =$request['texturaDeSuelo_id'];
                 $campo->user_id = $request['user_id'];
                 $campo->save();
-                return redirect()->route('campos.index')->with('success', 'Campo creado usuario administrador!');
+                return redirect()->route('campos.index')->with('success', 'Se registro el campo exitosamente!');
             } else {
                 $campo->nombre =$request['nombre'];
                 $campo->texturaDeSuelo_id =$request['texturaDeSuelo_id'];
                 $campo->user_id =$user->id;
                 $campo->save();
-                return redirect()->route('campos.index')->with('success', 'Campo creado usuario regular!');
+                return redirect()->route('campos.index')->with('success','Se registro el campo exitosamente!');
             }
                
         } catch (\Illuminate\Database\QueryException $ex) {
@@ -175,7 +175,7 @@ class CampoController extends Controller
             'user_id' => ['required']
         ])->validate();
         Campo::find($id)->update($request->all());
-        return redirect()->route('campos.index')->with('success', 'Campo actualizado!');
+        return redirect()->route('campos.index')->with('success', 'Se modifico la información del campo exitosamente!');
     }
 
     /**
