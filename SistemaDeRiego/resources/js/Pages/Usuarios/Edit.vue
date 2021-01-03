@@ -59,6 +59,7 @@ export default {
             processing: false,
             form: this.$inertia.form({
                 _method: "PUT",
+                id:this.usuario.id,
                 name: this.usuario.name,
                 email: this.usuario.email,
                 password: this.usuario.password,
