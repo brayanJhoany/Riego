@@ -3,20 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -25,8 +29,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'rol_id',
         'email',
         'password',
+        'profile_photo_path'
     ];
 
     /**
@@ -58,4 +64,28 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function rol(){
+        return $this->belongsTo(Rol::class);
+    }
+
+    public function campos(){
+        return $this->hasMany(Campo::class);
+    }
+
+    public function scopeFilter(Builder $query, array $filters) {
+        if ( ! request("page")) {
+            session()->put("search", $filters['search'] ?? null);
+            session()->put("trashed", $filters['trashed'] ?? null);
+        }
+        $query->when(session("search"), function ($query, $search) {
+            $query->where('name', 'LIKE', '%'.$search.'%');
+        })->when(session("trashed"), function ($query, $trashed) {
+            if ($trashed === 'with') {
+                $query->withTrashed();
+            } elseif ($trashed === 'only') {
+                $query->onlyTrashed();
+            }
+        });
+    }
 }

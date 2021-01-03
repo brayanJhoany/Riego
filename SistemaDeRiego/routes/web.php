@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CampoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+// use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +16,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/contacto',function(){
+    return Inertia\Inertia::render('VistaPrincipalComponent/Contacto');
 });
+Route::get('/',function(){
+    return Inertia\Inertia::render('VistaPrincipalComponent/Inicio');
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
+
+Route::resource("campos", CampoController::class);
+Route::resource("usuarios", UserController::class);
