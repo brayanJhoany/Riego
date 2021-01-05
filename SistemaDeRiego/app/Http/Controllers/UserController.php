@@ -78,7 +78,7 @@ class UserController extends Controller
         ]);
 
         try {
-            $url='/storage/profile-photos/JFGZ47lYVq8nfbdJJ4BaBfGtO0mmCMVoXLhcLcrD.jpg';
+            $url = '/storage/profile-photos/JFGZ47lYVq8nfbdJJ4BaBfGtO0mmCMVoXLhcLcrD.jpg';
             if ($request->hasFile('profile_photo_path')) {
                 // Si es así , almacenamos en la carpeta public/avatars
                 // esta estará dentro de public/defaults/
@@ -140,7 +140,7 @@ class UserController extends Controller
                 'email' => $user->email,
                 'password' => null,
                 'rol_id' => $user->rol_id,
-                'profile_photo_path' =>$user->profile_photo_path
+                'profile_photo_path' => $user->profile_photo_path
             ],
             'roles' => Rol::all()
         ]);
@@ -164,7 +164,7 @@ class UserController extends Controller
         ]);
 
         try {
-            $url=null;
+            $url = null;
             if ($request->hasFile('profile_photo_path')) {
                 // Si es así , almacenamos en la carpeta public/avatars
                 // esta estará dentro de public/defaults/
@@ -172,22 +172,22 @@ class UserController extends Controller
                 $url = Storage::url($imagen);
             }
             $user = User::find($id);
-            if($request->name != null){
+            if ($request->name != null) {
                 $user->name = $request['name'];
             }
-            if($request->email != null){
+            if ($request->email != null) {
                 $user->email = $request['email'];
             }
-            if($request->name != null){
+            if ($request->name != null) {
                 $user->name = $request['name'];
             }
-            if($request->password != null){
+            if ($request->password != null) {
                 $user->password = bcrypt($request['password']);
             }
-            if($request->rol_id != null){
+            if ($request->rol_id != null) {
                 $user->rol_id = $request['rol_id'];
             }
-            if($request->profile_photo_path != null){
+            if ($request->profile_photo_path != null) {
                 $user->profile_photo_path = $url;
             }
 
@@ -196,7 +196,6 @@ class UserController extends Controller
         } catch (\Illuminate\Database\QueryException $ex) {
             return redirect()->route('usuarios.index')->with('error', 'error al actualizado el usuario');
         }
-        
     }
 
     /**

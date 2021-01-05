@@ -9,6 +9,13 @@ use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Inertia\Inertia;
+
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
@@ -28,25 +35,29 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Fortify::loginView(function(){
+        Fortify::loginView(function () {
             return Inertia::render('Auth/Login')->toResponse(request());
         });
-         //para la pagina de registro
-         Fortify::registerView(function(){
-             return Inertia::render('Auth/Register')->toResponse(request());
+        //para la pagina de registro
+        Fortify::registerView(function () {
+            return Inertia::render('Auth/Register')->toResponse(request());
         });
-         //Recuperacion de contraseña
-         Fortify::requestPasswordResetLinkView(function(){
-             return Inertia::render('Auth/PasswordResetLink')->toResponse(request());
-         });
-         //Cambiar la contraseña.
-         Fortify::resetPasswordView(function(){
-             return Inertia::render('Auth/ResetPassword')->toResponse(request());
-         });
+        //Recuperacion de contraseña
+        Fortify::requestPasswordResetLinkView(function () {
+            return Inertia::render('Auth/PasswordResetLink')->toResponse(request());
+        });
+        //Cambiar la contraseña.
+        Fortify::resetPasswordView(function () {
+            return Inertia::render('Auth/ResetPassword')->toResponse(request());
+        });
         //Verificar Email
-          Fortify::verifyEmailView(function(){
-              return Inertia::render('Auth/VerifyEmail')->toResponse(request());
-          });
+        Fortify::verifyEmailView(function () {
+            return Inertia::render('Auth/VerifyEmail')->toResponse(request());
+        });
+
+
+
+
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
