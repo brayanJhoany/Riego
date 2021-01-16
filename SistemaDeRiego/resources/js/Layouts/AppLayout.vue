@@ -1,45 +1,41 @@
 <template>
     <div class="min-h-screen min-w-full  bg-gray-100">
-        <nav class="bg-white border-b border-gray-100">
+        <nav class="bg-white border-b  border-gray-100">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex">
                         <!-- Logo -->
-                        <div class="flex-shrink-0 flex items-center">
+                        <!-- <div class="flex-shrink-0 flex items-center">
                             <inertia-link :href="route('dashboard')">
                                 <jet-application-mark class="block h-9 w-auto" />
                             </inertia-link>
-                        </div>
+                        </div> -->
 
                         <!-- Rutas -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                <p class="text-black p-0">Dashboard</p>
+                                <p class="text-black font-extrabold p-0 ">Dashboard</p>
                             </jet-nav-link>
-                            <!-- Crud de usuario -->
-                            <jet-nav-link v-show="$page.user.rol_id ==1" href="/usuarios" :active="route().current('usuarios')">
+                            
+                            <jet-nav-link v-show="$page.user.rol_id == 1" href="/usuarios" :active="route().current('usuarios')">
                                 
-                                <p class="text-black p-0">Usuarios</p>
+                                <p class="text-black font-extrabold p-0">Usuarios</p>
                             </jet-nav-link>
-                            <!-- Crud de campos del usuario -->
-                            <jet-nav-link href="/campos" :active="route().current('campos')">
-                                Mis campos
+                            <jet-nav-link :href="this.route('campos.index')" :active="route().current('campos.index')">
+                                <p class="text-black font-extrabold p-0">Campos</p>
                             </jet-nav-link>
 
-                            <!-- Crud de casetas de riego del usuario -->
-                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
+                            <!-- <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Casetas de riego
                             </jet-nav-link>
-                            <!-- Crud de planificacion del usuario -->
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Planificacion de riegos
                             </jet-nav-link>
 
-                            <!-- Crud de riegos del usuario -->
                             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Mis Riegos
-                            </jet-nav-link>
+                            </jet-nav-link> -->
                         </div>
                     </div>
 
@@ -51,7 +47,7 @@
                                     <button v-if="$page.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
                                         <!-- <img   class="h-8 w-8 rounded-full object-cover" :src="'storage/'+$page.user.profile_photo_path" :alt="$page.user.name" /> -->
                                         <img v-if="$page.user.profile_photo_path == null"  :src="$page.user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-8 w-8 object-cover">
-                                        <img v-else class="h-9 w-9  rounded-full object-cover" :src="'http://127.0.0.1:8000'+$page.user.profile_photo_path" />
+                                        <img v-else class="h-10 w-10  rounded-full object-cover" :src="'http://127.0.0.1:8000'+$page.user.profile_photo_path" />
                                     </button>
 
                                     <button v-else class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -302,3 +298,7 @@
         }
     }
 </script>
+
+<style >
+
+</style>

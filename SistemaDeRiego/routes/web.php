@@ -33,5 +33,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');
 
-Route::resource("campos", CampoController::class);
 Route::resource("usuarios", UserController::class);
+Route::resource("campos", CampoController::class);

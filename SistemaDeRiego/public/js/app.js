@@ -3815,7 +3815,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['href', 'active'],
   computed: {
     classes: function classes() {
-      return this.active ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out' : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
+      return this.active ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-900 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out' : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
     }
   }
 });
@@ -4009,10 +4009,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/NavLink */ "./resources/js/Jetstream/NavLink.vue");
 /* harmony import */ var _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/ResponsiveNavLink */ "./resources/js/Jetstream/ResponsiveNavLink.vue");
 /* harmony import */ var _Components_UI_FlashMessage_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/UI/FlashMessage.vue */ "./resources/js/Components/UI/FlashMessage.vue");
-//
-//
-//
-//
 //
 //
 //
@@ -5666,6 +5662,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -6912,6 +6909,82 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/mapValues */ "./node_modules/lodash/mapValues.js");
 /* harmony import */ var lodash_mapValues__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_mapValues__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Components_Global_Pagination_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Components/Global/Pagination.vue */ "./resources/js/Components/Global/Pagination.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -56414,28 +56487,10 @@ var render = function() {
     "div",
     { staticClass: "min-h-screen min-w-full  bg-gray-100" },
     [
-      _c("nav", { staticClass: "bg-white border-b border-gray-100" }, [
+      _c("nav", { staticClass: "bg-white border-b  border-gray-100" }, [
         _c("div", { staticClass: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" }, [
           _c("div", { staticClass: "flex justify-between h-16" }, [
             _c("div", { staticClass: "flex" }, [
-              _c(
-                "div",
-                { staticClass: "flex-shrink-0 flex items-center" },
-                [
-                  _c(
-                    "inertia-link",
-                    { attrs: { href: _vm.route("dashboard") } },
-                    [
-                      _c("jet-application-mark", {
-                        staticClass: "block h-9 w-auto"
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
               _c(
                 "div",
                 { staticClass: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex " },
@@ -56449,9 +56504,11 @@ var render = function() {
                       }
                     },
                     [
-                      _c("p", { staticClass: "text-black p-0" }, [
-                        _vm._v("Dashboard")
-                      ])
+                      _c(
+                        "p",
+                        { staticClass: "text-black font-extrabold p-0 " },
+                        [_vm._v("Dashboard")]
+                      )
                     ]
                   ),
                   _vm._v(" "),
@@ -56463,7 +56520,7 @@ var render = function() {
                           name: "show",
                           rawName: "v-show",
                           value: _vm.$page.user.rol_id == 1,
-                          expression: "$page.user.rol_id ==1"
+                          expression: "$page.user.rol_id == 1"
                         }
                       ],
                       attrs: {
@@ -56472,23 +56529,10 @@ var render = function() {
                       }
                     },
                     [
-                      _c("p", { staticClass: "text-black p-0" }, [
-                        _vm._v("Usuarios")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-nav-link",
-                    {
-                      attrs: {
-                        href: "/campos",
-                        active: _vm.route().current("campos")
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Mis campos\n                        "
+                      _c(
+                        "p",
+                        { staticClass: "text-black font-extrabold p-0" },
+                        [_vm._v("Usuarios")]
                       )
                     ]
                   ),
@@ -56497,43 +56541,15 @@ var render = function() {
                     "jet-nav-link",
                     {
                       attrs: {
-                        href: _vm.route("dashboard"),
-                        active: _vm.route().current("dashboard")
+                        href: this.route("campos.index"),
+                        active: _vm.route().current("campos.index")
                       }
                     },
                     [
-                      _vm._v(
-                        "\n                            Casetas de riego\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-nav-link",
-                    {
-                      attrs: {
-                        href: _vm.route("dashboard"),
-                        active: _vm.route().current("dashboard")
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Planificacion de riegos\n                        "
-                      )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "jet-nav-link",
-                    {
-                      attrs: {
-                        href: _vm.route("dashboard"),
-                        active: _vm.route().current("dashboard")
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            Mis Riegos\n                        "
+                      _c(
+                        "p",
+                        { staticClass: "text-black font-extrabold p-0" },
+                        [_vm._v("Campos")]
                       )
                     ]
                   )
@@ -56578,7 +56594,7 @@ var render = function() {
                                           })
                                         : _c("img", {
                                             staticClass:
-                                              "h-9 w-9  rounded-full object-cover",
+                                              "h-10 w-10  rounded-full object-cover",
                                             attrs: {
                                               src:
                                                 "http://127.0.0.1:8000" +
@@ -61287,16 +61303,16 @@ var render = function() {
           key: "header",
           fn: function() {
             return [
-              _c("div", { staticClass: "grid grid-cols-6  | " }, [
+              _c("div", { staticClass: "grid grid-cols-6 |" }, [
                 _c("p", { staticClass: "col-start-1 col-end-2" }, [
-                  _vm._v("\n                Lista de Usuarios\n            ")
+                  _vm._v("Lista de Usuarios")
                 ]),
                 _vm._v(" "),
                 _c(
                   "div",
                   {
                     staticClass:
-                      "col-start-3 col-end-4   md:w-45 px-3 mb-6 md:mb-0"
+                      "col-start-3 col-end-4 md:w-45 px-3 mb-6 md:mb-0"
                   },
                   [
                     _c(
@@ -61322,7 +61338,7 @@ var render = function() {
                         }
                       ],
                       staticClass:
-                        "appearance-none block w-full | bg-gray-200 text-gray-700 border border-gray-200  focus:bg-white focus:border-gray-500|\n                     rounded leading-tight focus:outline-none | py-2 px-4 ",
+                        "appearance-none block w-full | bg-gray-200 text-gray-700 border border-gray-200 focus:bg-white focus:border-gray-500| rounded leading-tight focus:outline-none | py-2 px-4",
                       attrs: {
                         type: "text",
                         placeholder: "Nombre del usuario"
@@ -61342,9 +61358,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "div",
-                  {
-                    staticClass: "col-start-5 col-end-6  text-center mr-10   "
-                  },
+                  { staticClass: "col-start-5 col-end-6 text-center mr-10" },
                   [
                     _c(
                       "inertia-link",
@@ -61397,208 +61411,174 @@ var render = function() {
     },
     [
       _vm._v(" "),
-      _c("div", { staticClass: "flex flex-col | pt-4 px-6 |  min-h-full" }, [
-        _c("div", { staticClass: "    overflow-x-auto sm:-mx-6 lg:-mx-8" }, [
+      _c("div", { staticClass: "flex flex-col | py-4 px-6 | bg-red-300 " }, [
+        _c("div", { staticClass: "overflow-x-auto max-h-96 " }, [
           _c(
-            "div",
-            {
-              staticClass:
-                "py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
-            },
+            "table",
+            { staticClass: "divide-y divide-gray-200 min-w-full min-h-full " },
             [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "shadow overflow-hidden border-b border-gray-200 sm:rounded-lg | h-full"
-                },
-                [
+              _c("thead", { staticClass: "bg-gray-50" }, [
+                _c("tr", [
                   _c(
-                    "table",
+                    "th",
                     {
                       staticClass:
-                        " divide-y divide-gray-200 min-w-full min-h-full "
+                        "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                      attrs: { scope: "col" }
                     },
                     [
-                      _c("thead", { staticClass: "bg-gray-50" }, [
-                        _c("tr", [
-                          _c(
-                            "th",
-                            {
-                              staticClass:
-                                "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-                              attrs: { scope: "col" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                    Nombre\n                                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "th",
-                            {
-                              staticClass:
-                                "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-                              attrs: { scope: "col" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                    Correo\n                                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "th",
-                            {
-                              staticClass:
-                                "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-                              attrs: { scope: "col" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                    Estado\n                                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "th",
-                            {
-                              staticClass:
-                                "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-                              attrs: { scope: "col" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                    Rol\n                                "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "th",
-                            {
-                              staticClass:
-                                "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-                              attrs: { scope: "col" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                                    Acciones\n                                "
-                              )
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _vm.usuarios.total > 0
-                        ? _c(
-                            "tbody",
-                            {
-                              staticClass: "bg-white divide-y divide-gray-200 "
-                            },
-                            _vm._l(_vm.usuarios.data, function(usuario) {
-                              return _c("TabUsuario", {
-                                key: usuario.id,
-                                attrs: { usuario: usuario }
-                              })
-                            }),
-                            1
-                          )
-                        : _c(
-                            "tbody",
-                            {
-                              staticClass: "bg-white divide-y divide-gray-200 "
-                            },
-                            [
-                              _c("tr", [
-                                _c(
-                                  "td",
-                                  { staticClass: "text-sm text-gray-500" },
-                                  [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "text-sm text-gray-500 mr-2"
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        No hay datos\n                                    "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass: "px-6 py-4 whitespace-nowrap"
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      { staticClass: "text-sm text-gray-500" },
-                                      [
-                                        _vm._v(
-                                          "\n                                        No hay datos\n                                    "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass:
-                                      "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                    No hay datos\n                                "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  {
-                                    staticClass:
-                                      "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
-                                  },
-                                  [
-                                    _vm._v(
-                                      "\n                                    No hay datos\n                                "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("td", {
-                                  staticClass:
-                                    "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                                })
-                              ])
-                            ]
-                          )
+                      _vm._v(
+                        "\n                        Nombre\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass:
+                        "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                      attrs: { scope: "col" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Correo\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass:
+                        "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                      attrs: { scope: "col" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Estado\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass:
+                        "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                      attrs: { scope: "col" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Rol\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    {
+                      staticClass:
+                        "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
+                      attrs: { scope: "col" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Acciones\n                    "
+                      )
                     ]
                   )
-                ]
-              ),
+                ])
+              ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: " flex self-center flex-" },
-                [_c("pagination", { attrs: { links: _vm.usuarios.links } })],
-                1
-              )
+              _vm.usuarios.total > 0
+                ? _c(
+                    "tbody",
+                    { staticClass: "bg-white divide-y divide-gray-200" },
+                    _vm._l(_vm.usuarios.data, function(usuario) {
+                      return _c("TabUsuario", {
+                        key: usuario.id,
+                        attrs: { usuario: usuario }
+                      })
+                    }),
+                    1
+                  )
+                : _c(
+                    "tbody",
+                    { staticClass: "bg-white divide-y divide-gray-200" },
+                    [
+                      _c("tr", [
+                        _c("td", { staticClass: "text-sm text-gray-500" }, [
+                          _c(
+                            "div",
+                            { staticClass: "text-sm text-gray-500 mr-2" },
+                            [
+                              _vm._v(
+                                "\n                            No hay datos\n                        "
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "px-6 py-4 whitespace-nowrap" },
+                          [
+                            _c(
+                              "div",
+                              { staticClass: "text-sm text-gray-500" },
+                              [
+                                _vm._v(
+                                  "\n                            No hay datos\n                        "
+                                )
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            staticClass:
+                              "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                          },
+                          [
+                            _vm._v(
+                              "\n                        No hay datos\n                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            staticClass:
+                              "px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                          },
+                          [
+                            _vm._v(
+                              "\n                        No hay datos\n                    "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("td", {
+                          staticClass:
+                            "px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                        })
+                      ])
+                    ]
+                  )
             ]
           )
-        ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "flex self-center flex-" },
+          [_c("pagination", { attrs: { links: _vm.usuarios.links } })],
+          1
+        )
       ])
     ]
   )

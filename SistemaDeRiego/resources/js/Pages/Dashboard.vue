@@ -6,6 +6,7 @@
             </h2>
         </template>
 
+        <!-- {{$page.user}} -->
         <!-- <div
             class="grid grid-cols-3  gap-4 | mt-4 mx-4 | text-center justify-items-center "
         >
